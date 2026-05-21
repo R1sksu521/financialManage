@@ -248,8 +248,6 @@
                 <configuration>
                     <warSourceDirectory>WebRoot</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <!-- 排除 WebRoot/WEB-INF/lib 中所有老旧 jar，全部由 Maven 管理 -->
-                    <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
                 </configuration>
             </plugin>
 

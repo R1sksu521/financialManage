@@ -1,5 +1,6 @@
 #!/bin/bash
-# Railway 自动注入 MYSQL_URL
+set -e  # 任何命令失败就退出
+
 if [ -n "$MYSQL_URL" ]; then
   DB_HOST=$(echo "$MYSQL_URL" | sed 's|.*@||;s|:.*||')
   DB_PORT=$(echo "$MYSQL_URL" | sed 's|.*:||;s|/.*||')
@@ -14,9 +15,15 @@ else
   DB_PASS=${MYSQL_PASSWORD:-${MYSQLPASSWORD:-root}}
 fi
 
-echo "DB: ${DB_HOST}:${DB_PORT}/${DB_NAME} user=${DB_USER}"
+echo "============================================"
+echo "DB_HOST=${DB_HOST}"
+echo "DB_PORT=${DB_PORT}"
+echo "DB_NAME=${DB_NAME}"
+echo "DB_USER=${DB_USER}"
+echo "MYSQL_URL env=${MYSQL_URL:-NOT SET}"
+echo "============================================"
 
-# 写入 db.properties
+# 写入新配置
 mkdir -p /tmp/war/WEB-INF/classes/
 cat > /tmp/war/WEB-INF/classes/db.properties << EOF
 jdbc.driver=com.mysql.cj.jdbc.Driver
@@ -25,12 +32,25 @@ jdbc.username=${DB_USER}
 jdbc.password=${DB_PASS}
 EOF
 
+echo "=== db.properties content ==="
+cat /tmp/war/WEB-INF/classes/db.properties
+echo "============================="
+
+# 更新 WAR
+echo "Updating WAR..."
 jar uf /usr/local/tomcat/webapps/ROOT.war -C /tmp/war WEB-INF/classes/db.properties
+echo "WAR updated OK"
+
+# 验证 WAR 里确实有 db.properties
+echo "=== Verifying WAR content ==="
+jar tf /usr/local/tomcat/webapps/ROOT.war | grep db.properties
+echo "============================="
+
 rm -rf /tmp/war
 
-# 自动初始化数据库表
-echo "Initializing database..."
-mysql -h${DB_HOST} -P${DB_PORT} -u${DB_USER} -p${DB_PASS} ${DB_NAME} < /init.sql 2>/dev/null
-echo "Database init done."
+# 初始化数据库
+echo "Running init.sql..."
+mysql -h${DB_HOST} -P${DB_PORT} -u${DB_USER} -p${DB_PASS} ${DB_NAME} < /init.sql
+echo "init.sql done"
 
-catalina.sh run
+exec catalina.sh run
