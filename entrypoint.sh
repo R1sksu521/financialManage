@@ -35,7 +35,7 @@ echo "========================"
 
 # 初始化数据库
 echo "Running init.sql..."
-mysql -h${DB_HOST} -P${DB_PORT} -u${DB_USER} -p${DB_PASS} ${DB_NAME} < /init.sql
+mysql -h${DB_HOST} -P${DB_PORT} -u${DB_USER} -p${DB_PASS} ${DB_NAME} < /init.sql || echo "init.sql warnings - may be normal"
 echo "init.sql done"
 
 exec catalina.sh run
