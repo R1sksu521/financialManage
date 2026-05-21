@@ -5,7 +5,6 @@ DB_NAME=${MYSQLDATABASE:-financialmanage}
 DB_USER=${MYSQLUSER:-root}
 DB_PASS=${MYSQLPASSWORD:-suPAN886}
 
-# 创建临时目录写入新配置文件
 mkdir -p /tmp/war/WEB-INF/classes/
 cat > /tmp/war/WEB-INF/classes/db.properties << EOF
 jdbc.driver=com.mysql.jdbc.Driver
@@ -14,9 +13,8 @@ jdbc.username=${DB_USER}
 jdbc.password=${DB_PASS}
 EOF
 
-# 把新配置注入 WAR 包
-cd /tmp/war
-jar uf /usr/local/tomcat/webapps/ROOT.war WEB-INF/classes/db.properties
+# 用 -C 切换目录，避免删除当前工作目录
+jar uf /usr/local/tomcat/webapps/ROOT.war -C /tmp/war WEB-INF/classes/db.properties
 rm -rf /tmp/war
 
 catalina.sh run
