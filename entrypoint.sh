@@ -31,6 +31,12 @@ echo "db.properties written OK"
 rm -f /usr/local/tomcat/webapps/ROOT.war
 echo "=== webapps contents ==="
 ls -la /usr/local/tomcat/webapps/
+echo "=== ROOT contents ==="
+ls /usr/local/tomcat/webapps/ROOT/ | head -20
+echo "=== WEB-INF contents ==="
+ls /usr/local/tomcat/webapps/ROOT/WEB-INF/ 2>/dev/null || echo "NO WEB-INF!"
+echo "=== classes contents ==="
+ls /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/ 2>/dev/null | head -10 || echo "NO classes!"
 echo "========================"
 
 # 初始化数据库
