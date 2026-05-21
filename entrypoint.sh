@@ -44,4 +44,11 @@ echo "Running init.sql..."
 mysql -h${DB_HOST} -P${DB_PORT} -u${DB_USER} -p${DB_PASS} ${DB_NAME} < /init.sql || echo "init.sql warnings - may be normal"
 echo "init.sql done"
 
+# 打包成 WAR（Tomcat 9 对老项目目录部署兼容不好）
+cd /usr/local/tomcat/webapps/financialManage
+jar cf ../financialManage.war .
+cd /
+rm -rf /usr/local/tomcat/webapps/financialManage
+echo "WAR created, directory removed"
+
 exec catalina.sh run
