@@ -18,7 +18,7 @@ fi
 echo "DB: ${DB_HOST}:${DB_PORT}/${DB_NAME} user=${DB_USER}"
 
 # 直接写文件（不再有 WAR）
-cat > /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/db.properties << EOF
+cat > /usr/local/tomcat/webapps/financialManage/WEB-INF/classes/db.properties << EOF
 jdbc.driver=com.mysql.cj.jdbc.Driver
 jdbc.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
 jdbc.username=${DB_USER}
@@ -28,15 +28,15 @@ EOF
 echo "db.properties written OK"
 
 # 删掉可能残留的 WAR 文件，避免 Tomcat 解压覆盖配置
-rm -f /usr/local/tomcat/webapps/ROOT.war
+rm -f /usr/local/tomcat/webapps/financialManage.war
 echo "=== webapps contents ==="
 ls -la /usr/local/tomcat/webapps/
 echo "=== ROOT contents ==="
-ls /usr/local/tomcat/webapps/ROOT/ | head -20
+ls /usr/local/tomcat/webapps/financialManage/ | head -20
 echo "=== WEB-INF contents ==="
-ls /usr/local/tomcat/webapps/ROOT/WEB-INF/ 2>/dev/null || echo "NO WEB-INF!"
+ls /usr/local/tomcat/webapps/financialManage/WEB-INF/ 2>/dev/null || echo "NO WEB-INF!"
 echo "=== classes contents ==="
-ls /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/ 2>/dev/null | head -10 || echo "NO classes!"
+ls /usr/local/tomcat/webapps/financialManage/WEB-INF/classes/ 2>/dev/null | head -10 || echo "NO classes!"
 echo "========================"
 
 # 初始化数据库
