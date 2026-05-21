@@ -3,11 +3,10 @@
 <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%> --%>
 
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+	String host = request.getHeader("X-Forwarded-Host");
+	if (host == null) host = request.getHeader("Host");
+	if (host == null) host = request.getServerName() + ":" + request.getServerPort();
+	String basePath = request.getScheme() + "://" + host + path + "/";
 
 <!DOCTYPE HTML>
 <html>
