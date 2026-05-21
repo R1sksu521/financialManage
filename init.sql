@@ -1,7 +1,4 @@
--- 初始化数据库
-CREATE DATABASE IF NOT EXISTS financialmanage DEFAULT CHARACTER SET utf8;
-USE financialmanage;
-
+-- 初始化数据库表
 -- 用户表
 CREATE TABLE IF NOT EXISTS user (
     uid INT AUTO_INCREMENT PRIMARY KEY,
