@@ -164,6 +164,13 @@
             <version>1.7.5</version>
         </dependency>
 
+        <!-- CGLIB (Spring AOP needs it) -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
         <!-- JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -241,6 +248,8 @@
                 <configuration>
                     <warSourceDirectory>WebRoot</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <!-- 排除 WebRoot/WEB-INF/lib 中所有老旧 jar，全部由 Maven 管理 -->
+                    <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
                 </configuration>
             </plugin>
 
