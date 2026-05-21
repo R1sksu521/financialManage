@@ -19,8 +19,8 @@ echo "DB: ${DB_HOST}:${DB_PORT}/${DB_NAME} user=${DB_USER}"
 # 写入 db.properties
 mkdir -p /tmp/war/WEB-INF/classes/
 cat > /tmp/war/WEB-INF/classes/db.properties << EOF
-jdbc.driver=com.mysql.jdbc.Driver
-jdbc.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf-8&useSSL=false
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
 jdbc.username=${DB_USER}
 jdbc.password=${DB_PASS}
 EOF
