@@ -22,8 +22,4 @@ jdbc.username=${DB_USER}
 jdbc.password=${DB_PASS}
 EOF
 
-# 把 localhost 日志重定向到 stdout，这样 Railway 日志里就能看到
-rm -f /usr/local/tomcat/logs/localhost.*.log
-ln -sf /dev/stdout /usr/local/tomcat/logs/localhost.$(date +%Y-%m-%d).log
-
 exec catalina.sh run

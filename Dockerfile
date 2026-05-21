@@ -4,7 +4,7 @@ COPY pom.xml .
 COPY src/ src/
 RUN mvn compile -DskipTests
 
-FROM tomcat:9.0-jdk8
+FROM tomcat:8.5-jdk8
 RUN rm -rf /usr/local/tomcat/webapps/*
 COPY WebRoot/ /usr/local/tomcat/webapps/ROOT/
 COPY --from=build /app/target/classes/ /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/
