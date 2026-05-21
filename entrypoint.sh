@@ -27,6 +27,12 @@ EOF
 
 echo "db.properties written OK"
 
+# 删掉可能残留的 WAR 文件，避免 Tomcat 解压覆盖配置
+rm -f /usr/local/tomcat/webapps/ROOT.war
+echo "=== webapps contents ==="
+ls -la /usr/local/tomcat/webapps/
+echo "========================"
+
 # 初始化数据库
 echo "Running init.sql..."
 mysql -h${DB_HOST} -P${DB_PORT} -u${DB_USER} -p${DB_PASS} ${DB_NAME} < /init.sql
