@@ -1,0 +1,18 @@
+# IDE
+*.iml
+.idea/
+.vscode/
+
+# Maven
+target/
+
+# Temp files
+*.py
+*.log
+output.txt
+*.jmx
+~$*
+
+# OS
+.DS_Store
+Thumbs.db
