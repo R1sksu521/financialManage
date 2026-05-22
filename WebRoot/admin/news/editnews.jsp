@@ -13,7 +13,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<base href="<%=basePath%>">
+<!-- <base href="<%=basePath%>"> -->
 
 <title>编辑新闻</title>
 <!-- 屏幕和设备的屏幕一致，初始缩放为1:1，进制用户缩放 -->

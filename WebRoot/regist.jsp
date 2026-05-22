@@ -11,7 +11,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<base href="<%=basePath%>">
+	<!-- <base href="<%=basePath%>"> -->
 
 	<title>注册页面</title>
 	<meta name="viewport"

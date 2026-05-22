@@ -3,6 +3,7 @@
 <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%> --%>
 
 <%
+	String path = request.getContextPath();
 	String host = request.getHeader("X-Forwarded-Host");
 	if (host == null) host = request.getHeader("Host");
 	if (host == null) host = request.getServerName() + ":" + request.getServerPort();
@@ -11,7 +12,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<base href="<%=basePath%>">
+<!-- <base href="<%=basePath%>"> -->
 
 <title>homePage</title>
 <!-- 屏幕和设备的屏幕一致，初始缩放为1:1，进制用户缩放 -->

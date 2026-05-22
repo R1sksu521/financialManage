@@ -14,7 +14,7 @@
 <html>
 
 <head>
-<base href="<%=basePath%>">
+<!-- <base href="<%=basePath%>"> -->
 
 <title>用户设置</title>
 <!-- 屏幕和设备的屏幕一致，初始缩放为1:1，进制用户缩放 -->

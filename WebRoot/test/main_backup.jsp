@@ -10,7 +10,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<base href="<%=basePath%>">
+<!-- <base href="<%=basePath%>"> -->
 
 <title>homePage</title>
 <!-- 屏幕和设备的屏幕一致，初始缩放为1:1，进制用户缩放 -->
