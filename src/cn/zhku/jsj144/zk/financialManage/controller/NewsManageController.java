@@ -94,47 +94,41 @@ public class NewsManageController {
 	
 	
 	//编辑新闻页面
+	//编辑新闻页面
 	@RequestMapping("/toEditPage.action")
 	public String toEditPage(Integer nid,Model model,Integer currentPage){
 		News news=newsService.queryNewsById(nid);//通过id查询当前新闻信息
-		
-		// 根据新闻路径，读取新闻文件内容，显示在页面上
-		String thingPath = news.getnContent();//获取文章路径
-		
-		// 读取文件内容，写到String中
+
+		// 根据新闻路径，读取新闻文件内容
+		String thingPath = news.getnContent();
+
 		int len = 0;
 		StringBuffer str = new StringBuffer("");
 		File file = new File(thingPath);
-		try {
-			FileInputStream is = new FileInputStream(file);
-			InputStreamReader isr = new InputStreamReader(is, "UTF-8");
-			BufferedReader in = new BufferedReader(isr);
-			String line = null;
-			while ((line = in.readLine()) != null)
-			{
-				if (len != 0) // 处理换行符的问题
-				{
+		if (file.exists()) {
+			try {
+				FileInputStream is = new FileInputStream(file);
+				InputStreamReader isr = new InputStreamReader(is, "UTF-8");
+				BufferedReader in = new BufferedReader(isr);
+				String line = null;
+				while ((line = in.readLine()) != null) {
+					if (len != 0) str.append("\n");
 					str.append(line);
+					len++;
 				}
-				else
-				{
-					str.append(line);
-				}
-				len++;
+				in.close();
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			in.close();
-			is.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
-		String content=str.toString();//内容
-		System.out.println("content:"+content);
-		
+		String content=str.toString();
+
 		model.addAttribute("content",content);
-		model.addAttribute("news", news);//信息
-		model.addAttribute("currentPage", currentPage);//保存当前页数
-		return "/admin/news/editnews.jsp";// 到编辑页面
+		model.addAttribute("news", news);
+		model.addAttribute("currentPage", currentPage);
+		return "/admin/news/editnews.jsp";
+	}
 	}
 	
 	//编辑新闻信息
