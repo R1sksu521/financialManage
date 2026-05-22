@@ -38,15 +38,15 @@
 <!-- 自定义控件 -->
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/admin/main.css">
-	
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/admin/news/editnews.css">
 <script type="text/javascript" charset="utf-8"
 	src="${pageContext.request.contextPath}/js/admin/editnews.js"></script>
-	
-<!-- 富文本ueditor插件相关 -->	
+
+<!-- 富文本ueditor插件相关 -->
+<script>window.UEDITOR_HOME_URL="${pageContext.request.contextPath}/ueditor/";</script>
 <script type="text/javascript" charset="utf-8"
-<script>window.UEDITOR_HOME_URL="${pageContext.request.contextPath}/ueditor/"";</script>
 	src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8"
 	src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js">
@@ -63,32 +63,32 @@
 	href="${pageContext.request.contextPath }/jedate/skin/jedate.css">
 
 <script type="text/javascript">
-	//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外  
+	//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
 	function forbidBackSpace(e) {
-		var ev = e || window.event; //获取event对象  
-		var obj = ev.target || ev.srcElement; //获取事件源  
-		var t = obj.type || obj.getAttribute('type'); //获取事件源类型  
-		//获取作为判断条件的事件类型  
+		var ev = e || window.event; //获取event对象
+		var obj = ev.target || ev.srcElement; //获取事件源
+		var t = obj.type || obj.getAttribute('type'); //获取事件源类型
+		//获取作为判断条件的事件类型
 		var vReadOnly = obj.readOnly;
 		var vDisabled = obj.disabled;
-		//处理undefined值情况  
+		//处理undefined值情况
 		vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
 		vDisabled = (vDisabled == undefined) ? true : vDisabled;
-		//当敲Backspace键时，事件源类型为密码或单行、多行文本的，  
-		//并且readOnly属性为true或disabled属性为true的，则退格键失效  
+		//当敲Backspace键时，事件源类型为密码或单行、多行文本的，
+		//并且readOnly属性为true或disabled属性为true的，则退格键失效
 		var flag1 = ev.keyCode == 8
 				&& (t == "password" || t == "text" || t == "textarea")
 				&& (vReadOnly == true || vDisabled == true);
-		//当敲Backspace键时，事件源类型非密码或单行、多行文本的，则退格键失效  
+		//当敲Backspace键时，事件源类型非密码或单行、多行文本的，则退格键失效
 		var flag2 = ev.keyCode == 8 && t != "password" && t != "text"
 				&& t != "textarea";
-		//判断  
+		//判断
 		if (flag2 || flag1)
 			return false;
 	}
-	//禁止后退键 作用于Firefox、Opera  
+	//禁止后退键 作用于Firefox、Opera
 	document.onkeypress = forbidBackSpace;
-	//禁止后退键  作用于IE、Chrome  
+	//禁止后退键  作用于IE、Chrome
 	document.onkeydown = forbidBackSpace;
 
 </script>
@@ -155,8 +155,8 @@
 								action="${pageContext.request.contextPath}/newsManage/editNews.action">
 								<div class="row">
 									<div class="col-md-12 col-xs-12">
-										<a href="javascript:;"
-											onClick="javascript:history.back(-1);"> <span
+										<a href="javascript:void(0)"
+											onClick="history.back();return false"> <span
 											class="glyphicon glyphicon-arrow-left addZiti">上一页</span>
 										</a>
 									</div>
@@ -187,7 +187,7 @@
 										<input class="form-control" type="text" id="recordTime" name="recordTime"
 										value="${news.recordTime }" readonly="readonly">
 									</div>
-									
+
 									<div>
 <!-- 									<div class="form-group"> -->
 										<label class="myzi">
@@ -196,7 +196,7 @@
 										<script id="editor" type="text/plain"
 											style="width:100%;height:370px;">${content}</script>
 									</div>
-									
+
 									<div>
 										<input type="hidden" id="currentPage2" name="currentPage2" value="${currentPage}">
 										<input type="hidden" id="nContent" name="nContent" value="${news.nContent }">
@@ -210,11 +210,11 @@
 									</div>
 								</div>
 							</form>
-							
+
 						</div><!-- addNewsContent -->
-						
-						
-						
+
+
+
 						<script type="text/javascript">
 							//实例化编辑器
 							//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
