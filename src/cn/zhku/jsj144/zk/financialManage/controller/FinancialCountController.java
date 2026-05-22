@@ -154,7 +154,7 @@ public class FinancialCountController {//财务统计
 		
 		/*  财务预算模块需要使用*/
 		//一个月（n天）的不同类型的收入，以及支出统计
-		@RequestMapping("/shouzhiRecord/monthInCategoryCountSpend.action")
+		@RequestMapping(value="/shouzhiRecord/monthInCategoryCountSpend.action", produces="application/json;charset=UTF-8")
 		@ResponseBody    //json格式数据
 		public String monthInCategoryCountSpend(String currentTime,String uid){
 			//处理currentTime
