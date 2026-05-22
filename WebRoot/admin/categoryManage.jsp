@@ -42,16 +42,15 @@
 	href="${pageContext.request.contextPath }/css/admin/main.css">
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
-	//设置当前页，并且提交表单
-	function toCurrentPage(currentPage){
-		$("#currentPage").val(currentPage);//设置当前页		//提交表单
-		document.selectByCondition.submit();
-	}
-	
-	//去收支类别修改信息页面	function toshouzhiCategoryEditPage(szcid){//异步交互事件
-		$.ajax({
+		function toCurrentPage(currentPage){
+			$("#currentPage").val(currentPage);
+			document.selectByCondition.submit();
+		}
+
+		function toshouzhiCategoryEditPage(szcid){
+			$.ajax({
 				type : "get",
 				url : "${pageContext.request.contextPath}/categoryManage/toEditPage.action",
 				data : {"szcid":szcid},
@@ -60,42 +59,34 @@
 					$("#update_szcid").val(data.shouzhiCategory.szcid);
 					$("#update_parent_category").val(data.shouzhiCategory.parent_category);
 					$("#update_son_category").val(data.shouzhiCategory.son_category);
-					$("#old_son_category").val(data.old_son_category);//保存原来的收支子类型
+					$("#old_son_category").val(data.old_son_category);
 				},
 				error:function(data){alert("fail");}
 			});
-	};
-	
-	
-	//删除当前用户
-	function deleteshouzhiCategory(szcid) {
-// 		alert("uid:"+uid);
-		var currentPage2=$("#currentPage3").val();//当前页
-		if (confirm('确认要删除该收支信息？')) {
-			//判断当前用户是否可以进行删除
-			$.ajax({
-				type : "get",
-				url : "${pageContext.request.contextPath}/categoryManage/ajaxConfirmDeleteShouzhiCategory.action",
-				data : {"szcid":szcid},
-				dataType : "json",
-				success : function(data) {
-// 					alert("成功");
-					if(data.name=="yes"){//可以删除
-						alert("删除收支类型成功！");
-						//跳转到删除收支信息action
-						window.location.href="${pageContext.request.contextPath}/categoryManage/deleteShouzhiCategory.action?szcid="+szcid+"&currentPage2="+currentPage2;
-					}
-					else{
-						alert("当前收支类型有很相应的收支记录，无法进行直接删除！");
-					}
-				},
-				error:function(data){
-					alert("fail");
-				}
-			});
 		}
-	}
-</script>
+
+		function deleteshouzhiCategory(szcid) {
+			var currentPage2=$("#currentPage3").val();
+			if (confirm("确认要删除该收支信息?")) {
+				$.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath}/categoryManage/ajaxConfirmDeleteShouzhiCategory.action",
+					data : {"szcid":szcid},
+					dataType : "json",
+					success : function(data) {
+						if(data.name=="yes"){
+							alert("删除收支类型成功!");
+							window.location.href="${pageContext.request.contextPath}/categoryManage/deleteShouzhiCategory.action?szcid="+szcid+"&currentPage2="+currentPage2;
+						}
+						else{
+							alert("无法删除");
+						}
+					},
+					error:function(data){alert("fail");}
+				});
+			}
+		}
+	</script>
 </head>
 
 <body>
