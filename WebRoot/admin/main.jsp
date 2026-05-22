@@ -102,8 +102,8 @@
 			$.ajax({
 				type : "get",
 				url : "${pageContext.request.contextPath}/userManage/ajaxConfirmDeleteUser.action",
-				data : {"uid":uid}/* 发送数据给服务器时所用的内容类型	*/
-				dataType : "json",//返回时的数据类型json
+				data : {"uid":uid},
+				dataType : "json",
 				success : function(data) {
 // 					alert("成功");
 					if(data.name=="yes"){//可以删除
