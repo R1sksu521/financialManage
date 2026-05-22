@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memorandum.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/memorandum.js"></script>
 
+<script>window.UEDITOR_HOME_URL="${pageContext.request.contextPath}/ueditor/"";</script>
 	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
 	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js"> </script>
 	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/ueditor/lang/zh-cn/zh-cn.js"></script>

@@ -45,6 +45,7 @@
 	
 <!-- 富文本ueditor插件相关 -->	
 <script type="text/javascript" charset="utf-8"
+<script>window.UEDITOR_HOME_URL="${pageContext.request.contextPath}/ueditor/"";</script>
 	src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8"
 	src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js">

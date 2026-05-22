@@ -38,6 +38,7 @@
 </script>
 
 
+<script>window.UEDITOR_HOME_URL="${pageContext.request.contextPath}/ueditor/"";</script>
 <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js"> </script>
 <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
