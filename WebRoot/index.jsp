@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String path = request.CTX;
+	String path = request.getContextPath();
 	String host = request.getHeader("X-Forwarded-Host");
 	if (host == null) host = request.getHeader("Host");
 	if (host == null) host = request.getServerName() + ":" + request.getServerPort();
