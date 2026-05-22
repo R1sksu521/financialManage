@@ -43,7 +43,6 @@
 
 
 <script type="text/javascript">
-	<script type="text/javascript">
 
 		function toCurrentPage(currentPage){
 			$("#currentPage").val(currentPage);
