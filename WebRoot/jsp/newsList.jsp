@@ -211,7 +211,7 @@
 							</p>
 						</div>
 						<div class="col-lg-5 col-md-5 hidden-sm hidden-xs">
-							<img src="images/person.png" class="img-responsive">
+							<img src="${pageContext.request.contextPath}/images/person.png" class="img-responsive">
 						</div>
 					</div>
 				</div>
