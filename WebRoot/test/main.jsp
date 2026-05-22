@@ -8,7 +8,7 @@
 	if (host == null) host = request.getHeader("Host");
 	if (host == null) host = request.getServerName() + ":" + request.getServerPort();
 	String basePath = request.getScheme() + "://" + host + path + "/";
-
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
