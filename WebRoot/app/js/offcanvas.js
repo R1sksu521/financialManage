@@ -1,14 +1,15 @@
 /*! Bootstrap-off-canvas-push - v1.0.2
 * Copyright (c) 2015 Steffen Ermel; Licensed MIT *
+* Fixed: removed jQuery Mobile swipe dependency
 */
 jQuery(document).ready(function($) {
 
     function whichTransitionEvent() {
         var el = document.createElement('event'),
             transitionEvents = {
-                'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
-                'MozTransition'    : 'transitionend',      // only for FF < 15
-                'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
+                'WebkitTransition' : 'webkitTransitionEnd',
+                'MozTransition'    : 'transitionend',
+                'transition'       : 'transitionend'
             };
         for(var t in transitionEvents){
             if( el.style[t] !== undefined ){
@@ -43,31 +44,5 @@ jQuery(document).ready(function($) {
                $('.navbar-collapse').removeClass('transition');
         });
     });
-
-    // jQuery Mobile swipe methods - only if available
-    if ($.fn.swiperight) {
-        $('.overlay').swiperight(function () {
-            $('.overlay').addClass('active');
-            $('body').addClass('active');
-            $('#navbar').addClass('in');
-            $('.row-offcanvas').addClass('active');
-            $('.sidebar-offcanvas').addClass('active');
-            $('.navbar-toggle').removeClass('collapsed');
-            $('.navbar-collapse').addClass('transition');
-        });
-
-        $('.overlay').swipeleft(function () {
-            $('.overlay').removeClass('active');
-            $('body').removeClass('active');
-            $('#navbar').removeClass('in');
-            $('.row-offcanvas').removeClass('active');
-            $('.sidebar-offcanvas').removeClass('active');
-            $('.navbar-toggle').addClass('collapsed');
-            $('.transition').one(transitionEvent,
-                 function(e) {
-                   $('.navbar-collapse').removeClass('transition');
-            });
-        });
-    }
 
 });
