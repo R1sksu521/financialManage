@@ -71,7 +71,7 @@
 <script
 	src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/app/js/offcanvas.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/app/js/offcanvas.js?v=2"></script>
 
 <script type="text/javascript">
 	//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外  
