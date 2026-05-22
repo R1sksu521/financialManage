@@ -5,7 +5,7 @@ package cn.zhku.jsj144.zk.financialManage.pojo;
  */
 public class MonthCount {
 	private int monthName;//月份
-	private int moneyName;//金额
+	private double moneyName;//金额
 	
 	//粗心大意，mysql查询之类型不匹配
 	//Invalid value for getInt()是一个java.sql.SQLException异常
@@ -19,10 +19,10 @@ public class MonthCount {
 	public void setMonthName(int monthName) {
 		this.monthName = monthName;
 	}
-	public int getMoneyName() {
+	public double getMoneyName() {
 		return moneyName;
 	}
-	public void setMoneyName(int moneyName) {
+	public void setMoneyName(double moneyName) {
 		this.moneyName = moneyName;
 	}
 	public String getCategoryName() {

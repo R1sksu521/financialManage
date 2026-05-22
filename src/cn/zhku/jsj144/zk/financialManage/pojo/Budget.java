@@ -4,7 +4,7 @@ public class Budget {//预算
 
 	private int wid;//id
 	private String wtime;//预算所在月份
-	private int wnum;//预算金额
+	private double wnum;//预算金额
 	private int user_id;//所属用户
 	public int getWid() {
 		return wid;
@@ -18,10 +18,10 @@ public class Budget {//预算
 	public void setWtime(String wtime) {
 		this.wtime = wtime;
 	}
-	public int getWnum() {
+	public double getWnum() {
 		return wnum;
 	}
-	public void setWnum(int wnum) {
+	public void setWnum(double wnum) {
 		this.wnum = wnum;
 	}
 	public int getUser_id() {
@@ -30,6 +30,6 @@ public class Budget {//预算
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	
-	
+
+
 }

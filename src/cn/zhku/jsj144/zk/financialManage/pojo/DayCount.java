@@ -7,7 +7,7 @@ package cn.zhku.jsj144.zk.financialManage.pojo;
  */
 public class DayCount {
 	private int dayName;//天
-	private int moneyName;//金额
+	private double moneyName;//金额
 	private String categoryName;//类型名
 	public int getDayName() {
 		return dayName;
@@ -15,10 +15,10 @@ public class DayCount {
 	public void setDayName(int dayName) {
 		this.dayName = dayName;
 	}
-	public int getMoneyName() {
+	public double getMoneyName() {
 		return moneyName;
 	}
-	public void setMoneyName(int moneyName) {
+	public void setMoneyName(double moneyName) {
 		this.moneyName = moneyName;
 	}
 	public String getCategoryName() {

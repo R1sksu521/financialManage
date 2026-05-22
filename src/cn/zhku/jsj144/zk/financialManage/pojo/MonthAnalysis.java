@@ -4,9 +4,9 @@ public class MonthAnalysis {/*月份分析*/
 
 	private int incomeRecordCount;//收入记录条数
 	private int spendsRecordCount;//支出记录条数
-	private int incomeMoney;//收入金额
-	private int spendsMoney;//支出金额
-	private int allMoney;//总金额
+	private double incomeMoney;//收入金额
+	private double spendsMoney;//支出金额
+	private double allMoney;//总金额
 	public int getIncomeRecordCount() {
 		return incomeRecordCount;
 	}
@@ -19,25 +19,24 @@ public class MonthAnalysis {/*月份分析*/
 	public void setSpendsRecordCount(int spendsRecordCount) {
 		this.spendsRecordCount = spendsRecordCount;
 	}
-	public int getIncomeMoney() {
+	public double getIncomeMoney() {
 		return incomeMoney;
 	}
-	public void setIncomeMoney(int incomeMoney) {
+	public void setIncomeMoney(double incomeMoney) {
 		this.incomeMoney = incomeMoney;
 	}
-	public int getSpendsMoney() {
+	public double getSpendsMoney() {
 		return spendsMoney;
 	}
-	public void setSpendsMoney(int spendsMoney) {
+	public void setSpendsMoney(double spendsMoney) {
 		this.spendsMoney = spendsMoney;
 	}
-	public int getAllMoney() {
+	public double getAllMoney() {
 		return allMoney;
 	}
-	public void setAllMoney(int allMoney) {
+	public void setAllMoney(double allMoney) {
 		this.allMoney = allMoney;
 	}
-	
-	
-	
+
+
 }
