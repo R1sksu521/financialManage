@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 
 //在文档加载（就绪）之后运行下面这些jquery代码
@@ -17,7 +17,7 @@ $(document).ready(function(){
 			
 			$.ajax({
 				//请求资源路径
-				url:getContextPath() + "/user/findUserByNameAndAjax.action",
+				url:CTX + "/user/findUserByNameAndAjax.action",
 				async:true,
 				//规定请求的类型（GET 或 POST）
 				type:"post",

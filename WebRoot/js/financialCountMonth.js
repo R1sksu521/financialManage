@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 $(function() {
 	// 点击显示 YYYY-MM年月格式
@@ -283,7 +283,7 @@ $(function() {
 		var day=howDay(currentTime);//是28，还是29，还是30，还是31
 		var arr=howArr(day);//x轴的坐标构建
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/MonthInDayCount.action",
+			url : CTX + "/shouzhiRecord/MonthInDayCount.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -389,7 +389,7 @@ $(function() {
 		var day=howDay(currentTime);//是28，还是29，还是30，还是31
 		var arr=howArr(day);//x轴的坐标构建
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/MonthInDayCount.action",
+			url : CTX + "/shouzhiRecord/MonthInDayCount.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -488,7 +488,7 @@ $(function() {
 		var day=howDay(currentTime);//是28，还是29，还是30，还是31
 		var arr=howArr(day);//x轴的坐标构建
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/MonthInDayCount.action",
+			url : CTX + "/shouzhiRecord/MonthInDayCount.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -596,7 +596,7 @@ $(function() {
 		var day=howDay(currentTime);//是28，还是29，还是30，还是31
 //		var arr=howArr(day);//x轴的坐标构建
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/MonthInDayCount.action",
+			url : CTX + "/shouzhiRecord/MonthInDayCount.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -695,7 +695,7 @@ $(function() {
 		var day=howDay(currentTime);//是28，还是29，还是30，还是31
 		var arr=howArr(day);//x轴的坐标构建
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/MonthInDayCount.action",
+			url : CTX + "/shouzhiRecord/MonthInDayCount.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -855,7 +855,7 @@ $(function() {
 		var day=howDay(currentTime);//是28，还是29，还是30，还是31
 		var arr=howArr(day);//x轴的坐标构建
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/MonthInDayCount.action",
+			url : CTX + "/shouzhiRecord/MonthInDayCount.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -926,7 +926,7 @@ $(function() {
 		var day=howDay(currentTime);//是28，还是29，还是30，还是31
 		var arr=howArr(day);//x轴的坐标构建
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/MonthInDayCount.action",
+			url : CTX + "/shouzhiRecord/MonthInDayCount.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -1036,7 +1036,7 @@ $(function() {
 	function MonthInCategoryCount(currentTime){
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/monthInCategoryCountIncome.action",
+			url : CTX + "/shouzhiRecord/monthInCategoryCountIncome.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -1106,7 +1106,7 @@ $(function() {
 	function MonthInCategoryCountSpends(currentTime){
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/monthInCategoryCountSpend.action",
+			url : CTX + "/shouzhiRecord/monthInCategoryCountSpend.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -1174,7 +1174,7 @@ $(function() {
 	function MonthInCategoryCountPieCircleRoundSpend(currentTime){
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/monthInCategoryCountSpend.action",
+			url : CTX + "/shouzhiRecord/monthInCategoryCountSpend.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -1258,7 +1258,7 @@ $(function() {
 	function MonthInCategoryCountPieCircleRoundIncome(currentTime){
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/monthInCategoryCountIncome.action",
+			url : CTX + "/shouzhiRecord/monthInCategoryCountIncome.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -1344,7 +1344,7 @@ $(function() {
 	function MonthInCategoryCountPieShanIncome(currentTime){
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/monthInCategoryCountIncome.action",
+			url : CTX + "/shouzhiRecord/monthInCategoryCountIncome.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -1421,7 +1421,7 @@ $(function() {
 	function MonthInCategoryCountPieShanSpend(currentTime){
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/monthInCategoryCountSpend.action",
+			url : CTX + "/shouzhiRecord/monthInCategoryCountSpend.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json

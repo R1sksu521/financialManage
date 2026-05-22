@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 //开启jquery学习之旅
 
@@ -31,7 +31,7 @@ $(document).ready(function(){
 			
 			$.ajax({
 				//请求资源路径
-				url:getContextPath() + "/user/findUserByNameAndAjax.action",
+				url:CTX + "/user/findUserByNameAndAjax.action",
 				async:true,
 				//规定请求的类型（GET 或 POST）
 				type:"post",

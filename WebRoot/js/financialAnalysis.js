@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 $(function() {
 	// financialCount页面加载时，进行绘制年度统计的表
@@ -160,7 +160,7 @@ $(function() {
 	function AllMonthCount(currentTime,lastTime){//当前月  以及上月的收支情况统计分析
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/financialAnalysis/monthAnalysis.action",
+			url : CTX + "/financialAnalysis/monthAnalysis.action",
 			type : "get",
 			data : "currentTime=" + currentTime+"&lastTime="+lastTime+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -423,7 +423,7 @@ $(function() {
 //		alert(uid);
 //		alert("-----------------");
 		$.ajax({
-			url : getContextPath() + "/financialAnalysis/monthCurrentDayAnalysis.action",
+			url : CTX + "/financialAnalysis/monthCurrentDayAnalysis.action",
 			type : "get",
 			data : "currentTimeDay=" + currentTimeDay+"&lastTimeDay="+lastTimeDay+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json

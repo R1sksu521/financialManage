@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 $(function() {
 	// 点击显示 YYYY-MM-DD年月格式
@@ -257,7 +257,7 @@ $(function() {
 		var uid=$("#uid").val();
 //		alert(uid+"success11");
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/dayInTimeCount.action",
+			url : CTX + "/shouzhiRecord/dayInTimeCount.action",
 			type : "get",
 			data : "start=" + start+"&end="+end+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json

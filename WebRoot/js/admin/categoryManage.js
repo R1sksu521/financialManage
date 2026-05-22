@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 $(function() {
 
@@ -19,7 +19,7 @@ $(function() {
 //		var son_category=$("#add_income_son_category").val();
 //		var parent_category=$("#add_income_parent_category").val();
 		$.ajax({
-			url:getContextPath() + "/categoryManage/ajaxFindCategory.action",
+			url:CTX + "/categoryManage/ajaxFindCategory.action",
 			async:true,
 			type:"post",
 			//规定要发送到服务器的数据（对象）
@@ -58,7 +58,7 @@ $(function() {
 	$("#add_income_category_btn").click(function(){
 		//再次验证收入子类型问题！！！
 		$.ajax({
-			url:getContextPath() + "/categoryManage/ajaxFindCategory.action",
+			url:CTX + "/categoryManage/ajaxFindCategory.action",
 			async:true,
 			type:"post",
 			//规定要发送到服务器的数据（对象）
@@ -112,7 +112,7 @@ $(function() {
 	
 	function valiadeExit2(){
 		$.ajax({
-			url:getContextPath() + "/categoryManage/ajaxFindCategory.action",
+			url:CTX + "/categoryManage/ajaxFindCategory.action",
 			async:true,
 			type:"post",
 			//规定要发送到服务器的数据（对象）
@@ -138,7 +138,7 @@ $(function() {
 	$("#add_spend_category_btn").click(function(){
 		//再次验证支出子类型问题！！！
 		$.ajax({
-			url:getContextPath() + "/categoryManage/ajaxFindCategory.action",
+			url:CTX + "/categoryManage/ajaxFindCategory.action",
 			async:true,
 			type:"post",
 			//规定要发送到服务器的数据（对象）
@@ -208,7 +208,7 @@ $(function() {
 			else{//是否与其它存在冲突
 				var parent_category=$("#update_parent_category").val();
 				$.ajax({
-					url:getContextPath() + "/categoryManage/ajaxFindCategory.action",
+					url:CTX + "/categoryManage/ajaxFindCategory.action",
 					async:true,
 					type:"post",
 					//规定要发送到服务器的数据（对象）

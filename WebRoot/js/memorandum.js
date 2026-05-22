@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 $(document).ready(function(){
 //	alert("你好");
@@ -11,7 +11,7 @@ $(document).ready(function(){
 	$("#editButton").click(function(){
 		//提交表单
 		//符合校验，进行表单提交
-		$.post(getContextPath() + "/wishlist/editWish.action", $("#editform").serialize(), function(data) { //序列化数据为对象
+		$.post(CTX + "/wishlist/editWish.action", $("#editform").serialize(), function(data) { //序列化数据为对象
 			//回调为ok时，弹出alert框，并重新刷新页面
 			alert("修改心愿单成功！");
 			window.location.reload();

@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 
 //在文档加载（就绪）之后运行下面这些jquery代码
@@ -38,7 +38,7 @@ $(document).ready(function(){
 			
 			$.ajax({
 				//请求资源路径
-				url:getContextPath() + "/user/findUserByNameAndAjax.action",
+				url:CTX + "/user/findUserByNameAndAjax.action",
 				async:true,
 				//规定请求的类型（GET 或 POST）
 				type:"post",
@@ -189,7 +189,7 @@ $(document).ready(function(){
          });    
 //		alert(str);
 		if(confirm('确认要批量删除该这些收支记录吗?')){
-			$.post(getContextPath() + "/shouzhiRecord/deleteBatch.action", {"id":str}, function(data) { 
+			$.post(CTX + "/shouzhiRecord/deleteBatch.action", {"id":str}, function(data) { 
 			//回调为ok时，弹出alert框，并重新刷新页面
 			alert("删除收支记录成功！");
 			window.location.reload();
@@ -212,7 +212,7 @@ $(document).ready(function(){
 			//ajax异步请求，当前收入类型是否存在
 			 $.ajax({
 					//请求资源路径
-					url:getContextPath() + "/shouzhiCategory/findsonCategoryByNameAndAjax.action",
+					url:CTX + "/shouzhiCategory/findsonCategoryByNameAndAjax.action",
 					async:true,
 					type:"post",
 					data:{"son_category":son},
@@ -243,7 +243,7 @@ $(document).ready(function(){
 		 alert("son:--"+son);
 		 if(son!=null&&son!=""){
 			 //提交表单数据
-			 $.post(getContextPath() + "/shouzhiCategory/addShouzhiCategory.action", $("#add_income_category_form")
+			 $.post(CTX + "/shouzhiCategory/addShouzhiCategory.action", $("#add_income_category_form")
 						.serialize(), function(data) { //序列化数据为对象
 					//回调为ok时，弹出alert框，并重新刷新页面
 					alert("添加收入类型成功！");
@@ -342,11 +342,11 @@ $(document).ready(function(){
 	 
 	 //存在跳转问题，不采用
 	 /* //提交表单数据
-		 $.post(getContextPath() + "/shouzhiRecord/addShouzhiRecord.action", $("#add_income_form")
+		 $.post(CTX + "/shouzhiRecord/addShouzhiRecord.action", $("#add_income_form")
 					.serialize(), function(data) { //序列化数据为对象
 				//回调为ok时，弹出alert框，并重新刷新页面
 				alert("添加收入数据成功！");
-				window.location.href=getContextPath() + "/shouzhiRecord/findShouzhiRecord.action";
+				window.location.href=CTX + "/shouzhiRecord/findShouzhiRecord.action";
 //				alert("new  href");
 			});*/
 	 
@@ -368,7 +368,7 @@ $(document).ready(function(){
 			//ajax异步请求，当前支出类型是否存在
 			 $.ajax({
 					//请求资源路径
-					url:getContextPath() + "/shouzhiCategory/findsonCategoryByNameAndAjax.action",
+					url:CTX + "/shouzhiCategory/findsonCategoryByNameAndAjax.action",
 					async:true,
 					type:"post",
 					data:{"son_category":son},
@@ -398,7 +398,7 @@ $(document).ready(function(){
 		 var son=$("#add_spend_category_input").val();//输入的内容
 		 if(son!=null&&son!=""){
 			 //提交表单数据
-			 $.post(getContextPath() + "/shouzhiCategory/addShouzhiCategory.action", $("#add_spend_category_form")
+			 $.post(CTX + "/shouzhiCategory/addShouzhiCategory.action", $("#add_spend_category_form")
 						.serialize(), function(data) { //序列化数据为对象
 					//回调为ok时，弹出alert框，并重新刷新页面
 					alert("添加支出类型成功！");

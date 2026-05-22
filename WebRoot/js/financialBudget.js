@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 $(function() {
 
@@ -51,7 +51,7 @@ $(function() {
 		    }
 			$("#addmsg").text("");
 			//添加预算
-			 $.post(getContextPath() + "/budget/addBudget.action",$("#add_form").serialize(),function(data){
+			 $.post(CTX + "/budget/addBudget.action",$("#add_form").serialize(),function(data){
 					alert("添加预算成功！");
 					window.location.reload();
 			});
@@ -73,7 +73,7 @@ $(function() {
 		    }
 			$("#editmsg").text("");
 			//添加预算
-			 $.post(getContextPath() + "/budget/editBudget.action",$("#edit_form").serialize(),function(data){
+			 $.post(CTX + "/budget/editBudget.action",$("#edit_form").serialize(),function(data){
 					alert("编辑预算成功！");
 					window.location.reload();
 			});
@@ -84,7 +84,7 @@ $(function() {
 
 		var wid=$("#delete_bug").val();
 		if (confirm('确认要删除该条记录吗?')) {
-			$.post(getContextPath() + "/budget/deleteBudget.action", {
+			$.post(CTX + "/budget/deleteBudget.action", {
 				"wid" : wid
 			}, function(data) {
 				//回调为ok时，弹出alert框，并重新刷新页面
@@ -97,7 +97,7 @@ $(function() {
 	//计算收入,以及支出
 	function functionAll(uid,current,budgetValue){
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/monthInCategoryCountSpend.action",
+			url : CTX + "/shouzhiRecord/monthInCategoryCountSpend.action",
 			type : "get",
 			data : "currentTime="+ current+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json

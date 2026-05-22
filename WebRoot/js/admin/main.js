@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 $(function() {
 
@@ -12,7 +12,7 @@ $(function() {
 		else{//用户名不为空时，进行上述的判定 --通过ajax进行实现
 			$.ajax({
 				//请求资源路径
-				url:getContextPath() + "/user/findUserByNameAndAjax.action",
+				url:CTX + "/user/findUserByNameAndAjax.action",
 				async:true,
 				//规定请求的类型（GET 或 POST）
 				type:"post",
@@ -102,7 +102,7 @@ $(function() {
 		var username=$("#insert_username").val();
 		$.ajax({
 			//请求资源路径
-			url:getContextPath() + "/user/findUserByNameAndAjax.action",
+			url:CTX + "/user/findUserByNameAndAjax.action",
 			async:true,
 			//规定请求的类型（GET 或 POST）
 			type:"post",
@@ -171,7 +171,7 @@ $(function() {
 			else{
 				$.ajax({
 					//请求资源路径
-					url:getContextPath() + "/user/findUserByNameAndAjax.action",
+					url:CTX + "/user/findUserByNameAndAjax.action",
 					async:true,
 					//规定请求的类型（GET 或 POST）
 					type:"post",
@@ -290,12 +290,12 @@ $(function() {
 		if(label==""||label==null){
 //				var currentPage=$("#currentPage").val();//当前页
 				alert("修改信息成功");
-//				$.post(getContextPath() + "/userManage/toEditPage.action", $("#updateUserForm")
+//				$.post(CTX + "/userManage/toEditPage.action", $("#updateUserForm")
 //						.serialize(), function(data) { //序列化数据为对象
 //					//回调为ok时，弹出alert框，并重新刷新页面
 //					alert("修改信息成功！");
 ////					window.location.reload();
-//					window.href=getContextPath() + "/userManage/findUsers.action?currentPage="+currentPage;
+//					window.href=CTX + "/userManage/findUsers.action?currentPage="+currentPage;
 //				});
 			
 			return true;

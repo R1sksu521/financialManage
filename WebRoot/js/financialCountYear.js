@@ -1,4 +1,4 @@
-function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
+
 
 //document.write("<script language=javascript src='js/financialCount.js'></script>");
 $(function() {
@@ -126,7 +126,7 @@ $(function() {
 		// alert("hahaha");
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/yearInMonthCount.action",
+			url : CTX + "/shouzhiRecord/yearInMonthCount.action",
 			type : "get",
 			data : "year=" + year+"&uid="+uid,
 //			data : "year=" + year+"&uid=${sessionScope.user.uid}",
@@ -263,7 +263,7 @@ $(function() {
 //		alert(uid);
 //		alert("饼图："+year);
 		$.ajax({
-				url : getContextPath() + "/shouzhiRecord/yearInCategoryCount.action",
+				url : CTX + "/shouzhiRecord/yearInCategoryCount.action",
 				type : "get",
 				data : "year=" + year+"&uid="+uid,
 //				data : "year=" + year,
@@ -374,7 +374,7 @@ $(function() {
 	function yearInCategoryCountSpends(year) {
 		var uid=$("#uid").val();
 		$.ajax({
-				url : getContextPath() + "/shouzhiRecord/yearInCategoryCountSpends.action",
+				url : CTX + "/shouzhiRecord/yearInCategoryCountSpends.action",
 				type : "get",
 				data : "year=" + year+"&uid="+uid,
 //				data : "year=" + year,
@@ -460,7 +460,7 @@ $(function() {
 	function yearInMonthCountColumn(year) {
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/yearInMonthCount.action",
+			url : CTX + "/shouzhiRecord/yearInMonthCount.action",
 			type : "get",
 			data : "year=" + year+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -587,7 +587,7 @@ $(function() {
 		// alert("hahaha");
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/yearInMonthCount.action",
+			url : CTX + "/shouzhiRecord/yearInMonthCount.action",
 			type : "get",
 //			data : "year=" + year,
 			data : "year=" + year+"&uid="+uid,
@@ -724,7 +724,7 @@ $(function() {
 	function yearInMonthCountColumnKing(year) {
 		var uid=$("#uid").val();
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/yearInMonthCount.action",
+			url : CTX + "/shouzhiRecord/yearInMonthCount.action",
 			type : "get",
 //			data : "year=" + year,
 			data : "year=" + year+"&uid="+uid,
@@ -885,7 +885,7 @@ $(function() {
 		var uid=$("#uid").val();
 //		alert(uid);
 		$.ajax({
-			url : getContextPath() + "/shouzhiRecord/yearInMonthCount.action",
+			url : CTX + "/shouzhiRecord/yearInMonthCount.action",
 			type : "get",
 			data : "year=" + year+"&uid="+uid,
 			dataType : "json",// 返回时的数据类型json
@@ -1017,7 +1017,7 @@ $(function() {
 		var uid=$("#uid").val();
 //		alert(uid);
 		$.ajax({
-				url : getContextPath() + "/shouzhiRecord/yearInCategoryCount.action",
+				url : CTX + "/shouzhiRecord/yearInCategoryCount.action",
 				type : "get",
 				data : "year=" + year+"&uid="+uid,
 				dataType : "json",// 返回时的数据类型json
@@ -1107,7 +1107,7 @@ $(function() {
 		var uid=$("#uid").val();
 //		alert(uid);
 		$.ajax({
-				url : getContextPath() + "/shouzhiRecord/yearInCategoryCountSpends.action",
+				url : CTX + "/shouzhiRecord/yearInCategoryCountSpends.action",
 				type : "get",
 				data : "year=" + year+"&uid="+uid,
 				dataType : "json",// 返回时的数据类型json
@@ -1195,7 +1195,7 @@ $(function() {
 	function yearInCategoryCountPieCircleRoundSpend(year) {//支出
 		var uid=$("#uid").val();
 		$.ajax({
-				url : getContextPath() + "/shouzhiRecord/yearInCategoryCountSpends.action",
+				url : CTX + "/shouzhiRecord/yearInCategoryCountSpends.action",
 				type : "get",
 				data : "year=" + year+"&uid="+uid,
 				dataType : "json",// 返回时的数据类型json
@@ -1296,7 +1296,7 @@ $(function() {
 	function yearInCategoryCountPieCircleRoundIncome(year) {//收入
 		var uid=$("#uid").val();
 		$.ajax({
-				url : getContextPath() + "/shouzhiRecord/yearInCategoryCount.action",
+				url : CTX + "/shouzhiRecord/yearInCategoryCount.action",
 				type : "get",
 				data : "year=" + year+"&uid="+uid,
 				dataType : "json",// 返回时的数据类型json
@@ -1391,7 +1391,7 @@ $(function() {
 		var uid=$("#uid").val();
 //		alert("雷达图");
 		$.ajax({
-				url : getContextPath() + "/shouzhiRecord/yearInMonthCount.action",
+				url : CTX + "/shouzhiRecord/yearInMonthCount.action",
 				type : "get",
 				data : "year=" + year+"&uid="+uid,
 				dataType : "json",// 返回时的数据类型json
@@ -1488,7 +1488,7 @@ $(function() {
 		function yearInCategoryCountAllKind(year) {
 			var uid=$("#uid").val();
 			$.ajax({
-					url : getContextPath() + "/shouzhiRecord/yearInMonthCount.action",
+					url : CTX + "/shouzhiRecord/yearInMonthCount.action",
 					type : "get",
 					data : "year=" + year+"&uid="+uid,
 					dataType : "json",// 返回时的数据类型json
