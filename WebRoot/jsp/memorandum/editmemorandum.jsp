@@ -116,7 +116,7 @@
 
 			<script type="text/javascript">
 				// 实例化编辑器（保持默认设置，显示字数统计）
-				var ue = UE.getEditor('editor');
+				var ue = UE.getEditor('editor',{elementPathEnabled:false});
 			</script>
 		</div>
 	</div>
