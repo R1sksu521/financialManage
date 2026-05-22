@@ -67,7 +67,7 @@
 <!-- 计算器 -->
 <!-- <script src="jquery-2.1.4.min.js"></script> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.css">
-<script src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js"></script>   
+<script src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js?v=3"></script>   
 
 <script type="text/javascript">
 	//处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外  

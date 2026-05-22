@@ -68,7 +68,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.css">
 <script
-	src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js"></script>
+	src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js?v=3"></script>
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/app/js/offcanvas.js?v=2"></script>

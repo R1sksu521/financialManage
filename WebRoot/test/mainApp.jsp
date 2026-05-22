@@ -72,7 +72,7 @@
 <!-- 计算器 -->
 <!-- <script src="jquery-2.1.4.min.js"></script> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.css">
-<script src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js"></script>   
+<script src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js?v=3"></script>   
 
 
 <!-- 		<script type="text/javascript" src="${pageContext.request.contextPath}/app/js/jquery-2.1.1.min.js"></script> -->

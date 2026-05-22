@@ -69,7 +69,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.css">
 <script
-	src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js"></script>
+	src="${pageContext.request.contextPath }/bootstrap/cal/SimpleCalculadorajQuery.js?v=3"></script>
 
 <!-- offcanvas.js removed to prevent swiperight crash -->
 
