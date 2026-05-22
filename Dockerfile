@@ -5,7 +5,6 @@ COPY src/ src/
 RUN mvn compile -DskipTests
 
 FROM tomcat:8.5-jdk8
-ARG CACHEBUST=1
 RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt/lists/*
 RUN rm -rf /usr/local/tomcat/webapps/*
 COPY WebRoot/ /usr/local/tomcat/webapps/ROOT/
