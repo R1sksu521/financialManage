@@ -90,7 +90,14 @@
 								</div>
 
 								<div>
-									<span style="font-size:18px ;">${content}</span>
+									<div style="font-size:18px; word-wrap:break-word; overflow-wrap:break-word;">
+		${content}
+	</div>
+	<style>
+		#addNewsContent img { max-width: 100% !important; height: auto !important; }
+		#addNewsContent video { max-width: 100% !important; height: auto !important; }
+		#addNewsContent table { max-width: 100% !important; }
+	</style>
 <!-- 									<label  style="font-size:15px ;font-family:STKaiti ! important;"> </label> -->
 								</div>
 

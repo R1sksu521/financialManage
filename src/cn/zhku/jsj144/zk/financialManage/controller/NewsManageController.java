@@ -58,7 +58,7 @@ public class NewsManageController {
 		
 		String nContent=null;//上传的文件路径
 		
-		String realPath = System.getProperty("user.home") + "/upload/news"; // 兼容Windows和Linux
+		String realPath = request.getServletContext().getRealPath("/") + "upload/news"; // 存到webapp目录下，可直接通过URL访问
 		String uuidName = generateUUIDName();// 生成唯一的文件名
 		String savePath = generateSavePath(realPath, uuidName);// 生成随机文件夹  --d:/upload/news/1/2/
 //		System.out.println(file==null);//false
