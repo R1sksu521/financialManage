@@ -47,7 +47,7 @@ public class UserManageController {//用户管理
 	@RequestMapping("/logout.action")
 	public String logout(HttpSession session){//退出登录
 		session.removeAttribute("admin");//删除
-		return "/admin/index.jsp";
+		return "redirect:/admin/index.jsp";
 	}
 	
 	

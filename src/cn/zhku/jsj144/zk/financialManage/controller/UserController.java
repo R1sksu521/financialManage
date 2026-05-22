@@ -174,7 +174,7 @@ public class UserController {
 		request.getSession().removeAttribute("user");
 		request.getSession().removeAttribute("isGuest");
 		request.getSession().removeAttribute("isAdmin");
-		return "/index.jsp";
+		return "redirect:/index.jsp";
 	}
 
 }
