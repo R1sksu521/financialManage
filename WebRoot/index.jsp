@@ -48,7 +48,7 @@
 					<hr />
 					<h3>用户登录</h3>
 					<form
-						action="${pageContext.request.contextPath}/user/login.action "
+						action="${pageContext.request.contextPath}/user/login.action"
 						id="myform" method="post" onsubmit="return validateForm()">
 						<!-- 输入框组 -->
 						<!-- 用户名或者密码输入错误，请重新输入 -->
