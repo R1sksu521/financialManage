@@ -129,7 +129,6 @@ public class NewsManageController {
 		model.addAttribute("currentPage", currentPage);
 		return "/admin/news/editnews.jsp";
 	}
-	}
 	
 	//编辑新闻信息
 	@RequestMapping("/editNews.action")      //  修改文件内容！！！！！！！！！
