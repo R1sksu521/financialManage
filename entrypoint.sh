@@ -7,12 +7,12 @@ DB_NAME=${MYSQLDATABASE:-financialmanage}
 DB_USER=${MYSQLUSER:-root}
 DB_PASS=${MYSQLPASSWORD:-root}
 
-cat > src/db.properties << EOF
+cat > /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/db.properties << EOF
 jdbc.driver=com.mysql.cj.jdbc.Driver
-jdbc.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf-8&useSSL=false
+jdbc.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
 jdbc.username=${DB_USER}
 jdbc.password=${DB_PASS}
 EOF
 
 echo "DB: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
-exec mvn tomcat7:run
+exec catalina.sh run
