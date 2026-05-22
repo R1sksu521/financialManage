@@ -1,8 +1,4 @@
-function getContextPath() {
-	var path = window.location.pathname;
-	var index = path.indexOf('/', 1);
-	return index === -1 ? '' : path.substring(0, index);
-}
+function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
 
 $(function() {
 	// 点击显示 YYYY-MM年月格式

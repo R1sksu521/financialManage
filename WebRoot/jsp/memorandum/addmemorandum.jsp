@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 <!-- jquery文件，务必在bootstrap.min.js之前引入 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+<script>var CTX="${pageContext.request.contextPath}";</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- 自定义控件 -->	

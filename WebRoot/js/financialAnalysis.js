@@ -1,8 +1,4 @@
-function getContextPath() {
-	var path = window.location.pathname;
-	var index = path.indexOf('/', 1);
-	return index === -1 ? '' : path.substring(0, index);
-}
+function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
 
 $(function() {
 	// financialCount页面加载时，进行绘制年度统计的表

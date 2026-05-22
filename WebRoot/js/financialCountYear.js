@@ -1,8 +1,4 @@
-function getContextPath() {
-	var path = window.location.pathname;
-	var index = path.indexOf('/', 1);
-	return index === -1 ? '' : path.substring(0, index);
-}
+function getContextPath() { return (typeof CTX !== "undefined" ? CTX : ""); }
 
 //document.write("<script language=javascript src='js/financialCount.js'></script>");
 $(function() {

@@ -21,6 +21,7 @@
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+<script>var CTX="${pageContext.request.contextPath}";</script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/memorandum.css">

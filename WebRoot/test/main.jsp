@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 <!-- jquery文件，务必在bootstrap.min.js之前引入 -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+<script>var CTX="${pageContext.request.contextPath}";</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- 引入JQuery -->
@@ -109,7 +110,7 @@
 		$
 				.ajax({
 					type : "get",
-					url : "/financialManage/shouzhiRecord/toEdit.action",
+					url : CTX + "/shouzhiRecord/toEdit.action",
 					data : {
 						"id" : id
 					},
@@ -176,7 +177,7 @@
 	//$.post(URL,data,callback);   
 	//失败
 	function updateShouzhiRecord() {
-		$.post("/financialManage/shouzhiRecord/edit.action", $("#updateform")
+		$.post(CTX + "/shouzhiRecord/edit.action", $("#updateform")
 				.serialize(), function(data) { //序列化数据为对象
 			//回调为ok时，弹出alert框，并重新刷新页面
 			alert("更新收支记录成功！");
@@ -187,7 +188,7 @@
 	//删除收支记录信息
 	function deleteshouzhiRecord(id) {
 		if (confirm('确认要删除该收支记录吗?')) {
-			$.post("/financialManage/shouzhiRecord/deleteOne.action", {
+			$.post(CTX + "/shouzhiRecord/deleteOne.action", {
 				"id" : id
 			}, function(data) {
 				//回调为ok时，弹出alert框，并重新刷新页面

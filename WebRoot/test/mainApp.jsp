@@ -32,7 +32,8 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/app/js/jquery-2.1.1.min.js"></script>
 <!-- jquery文件，务必在bootstrap.min.js之前引入 -->
-<!-- <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script> -->
+<!-- <script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+<script>var CTX="${pageContext.request.contextPath}";</script> -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- 引入JQuery -->

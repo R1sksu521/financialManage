@@ -86,7 +86,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>    
       
       
-    <script src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>    
+    <script src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+<script>var CTX="${pageContext.request.contextPath}";</script>    
     <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>    
 </body>    
 </html>    
