@@ -18,6 +18,19 @@ echo "DB: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
 
 # Run DB migrations
 echo "Running DB migrations..."
-mariadb -h "${DB_HOST}" -P "${DB_PORT}" -u "${DB_USER}" -p"${DB_PASS}" "${DB_NAME}" -e "ALTER TABLE shouzhi_record MODIFY COLUMN szr_num DOUBLE;" 2>/dev/null || echo "Migration skipped (column may already be DOUBLE or table doesn't exist yet)"
+MYSQL_CMD=""
+for cmd in mariadb mysql; do
+    if command -v $cmd >/dev/null 2>&1; then
+        MYSQL_CMD=$cmd
+        break
+    fi
+done
+if [ -n "$MYSQL_CMD" ]; then
+    echo "ALTER TABLE shouzhi_record MODIFY COLUMN szr_num DOUBLE;" | $MYSQL_CMD -h "${DB_HOST}" -P "${DB_PORT}" -u "${DB_USER}" -p"${DB_PASS}" "${DB_NAME}" || echo "Migration warning: ALTER TABLE failed, check logs"
+    echo "Column type after migration:"
+    echo "DESCRIBE shouzhi_record szr_num;" | $MYSQL_CMD -h "${DB_HOST}" -P "${DB_PORT}" -u "${DB_USER}" -p"${DB_PASS}" "${DB_NAME}" || true
+else
+    echo "No MySQL client found, skipping migrations"
+fi
 
 exec catalina.sh run
