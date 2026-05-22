@@ -51,7 +51,8 @@
 	
 	//删除当前用户
 	function deleteNews(nid) {
-		var currentPage2=$("#currentPage3").val();//当前页		if (confirm('确认要删除该条新闻信息吗?')) {
+		var currentPage2=$("#currentPage3").val();//当前页
+		if (confirm('确认要删除该条新闻信息吗?')) {
 			window.location.href="${pageContext.request.contextPath}/newsManage/deleteNews.action?nid="+nid+"&currentPage2="+currentPage2;
 		}
 	}

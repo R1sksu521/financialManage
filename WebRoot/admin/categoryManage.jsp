@@ -70,7 +70,8 @@
 	//删除当前用户
 	function deleteshouzhiCategory(szcid) {
 // 		alert("uid:"+uid);
-		var currentPage2=$("#currentPage3").val();//当前页		if (confirm('确认要删除该收支信息？')) {
+		var currentPage2=$("#currentPage3").val();//当前页
+		if (confirm('确认要删除该收支信息？')) {
 			//判断当前用户是否可以进行删除
 			$.ajax({
 				type : "get",
