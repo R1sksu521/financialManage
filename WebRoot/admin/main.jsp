@@ -56,8 +56,7 @@
 				type : "get",
 				url : "${pageContext.request.contextPath}/userManage/toEditPage.action",
 				data : {"uid":uid},
-// 				data:JSON.stringify({"uid":uid}),
-				contentType:"application/json;charset=utf-8",/* 发送数据给服务器时所用的内容类型	*/
+// 				data:JSON.stringify({"uid":uid})/* 发送数据给服务器时所用的内容类型	*/
 				dataType : "json",//返回时的数据类型json
 				success : function(data) {
 // 					alert("成功");
@@ -103,8 +102,7 @@
 			$.ajax({
 				type : "get",
 				url : "${pageContext.request.contextPath}/userManage/ajaxConfirmDeleteUser.action",
-				data : {"uid":uid},
-				contentType:"application/json;charset=utf-8",/* 发送数据给服务器时所用的内容类型	*/
+				data : {"uid":uid}/* 发送数据给服务器时所用的内容类型	*/
 				dataType : "json",//返回时的数据类型json
 				success : function(data) {
 // 					alert("成功");

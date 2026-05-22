@@ -55,8 +55,7 @@
 				type : "get",
 				url : "${pageContext.request.contextPath}/categoryManage/toEditPage.action",
 				data : {"szcid":szcid},
-				contentType:"application/json;charset=utf-8",/* 发送数据给服务器时所用的内容类型	*/
-				dataType : "json",//返回时的数据类型json
+				dataType : "json",
 				success : function(data) {
 					$("#update_szcid").val(data.shouzhiCategory.szcid);
 					$("#update_parent_category").val(data.shouzhiCategory.parent_category);
@@ -78,8 +77,7 @@
 				type : "get",
 				url : "${pageContext.request.contextPath}/categoryManage/ajaxConfirmDeleteShouzhiCategory.action",
 				data : {"szcid":szcid},
-				contentType:"application/json;charset=utf-8",/* 发送数据给服务器时所用的内容类型	*/
-				dataType : "json",//返回时的数据类型json
+				dataType : "json",
 				success : function(data) {
 // 					alert("成功");
 					if(data.name=="yes"){//可以删除
