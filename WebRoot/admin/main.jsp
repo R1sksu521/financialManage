@@ -43,85 +43,56 @@
 
 
 <script type="text/javascript">
+	<script type="text/javascript">
 
-	//设置当前页，并且提交表单
-	function toCurrentPage(currentPage){
-		$("#currentPage").val(currentPage);//设置当前页		//提交表单
-		document.selectByCondition.submit();
-	}
-	
-	//去用户修改信息页面	function toUserEditPage(uid){//异步交互事件
-// 		alert(uid);
-		$.ajax({
+		function toCurrentPage(currentPage){
+			$("#currentPage").val(currentPage);
+			document.selectByCondition.submit();
+		}
+
+		function toUserEditPage(uid){
+			$.ajax({
 				type : "get",
 				url : "${pageContext.request.contextPath}/userManage/toEditPage.action",
 				data : {"uid":uid},
-// 				data:JSON.stringify({"uid":uid})/* 发送数据给服务器时所用的内容类型	*/
-				dataType : "json",//返回时的数据类型json
+				dataType : "json",
 				success : function(data) {
-// 					alert("成功");
 					$("#update_uid").val(data.user.uid);
 					$("#update_username").val(data.user.username);
 					$("#update_password").val(data.user.password);
 					$("#update_email").val(data.user.email);
 					$("#update_phone").val(data.user.phone);
 					var sex=data.user.sex;
-					if(sex!=null&&sex!=""){
-						if(sex=='男'){
-							$("#nan_radio").attr("checked","checked");
-						}
-						else{
-							$("#nv_radio").attr("checked","checked");
-						}
-					}
-					else{
-						$("#nan_radio").attr("checked","checked");
-					}
-					$("#old_username").val(data.old_username);//保存原来的用户名
-					
+					if(sex=="男"){ $("#nan_radio").prop("checked",true); }
+					else{ $("#nv_radio").prop("checked",true); }
+					$("#old_username").val(data.old_username);
 				},
-			/* 	 error:function(jqXHR,textStatus,errorThrown){  
-			        alert("build failure!");  
-			        console.log(jqXHR);  
-			        console.log(textStatus);  
-			        console.log(errorThrown);  
-			    }   */
-				error:function(data){
-					alert("fail");
-				}
-// 			    error: function(XMLHttpRequest, textStatus, errorThrown) 
-// 			    {  alert(XMLHttpRequest.status);  alert(XMLHttpRequest.readyState);  alert(textStatus); }
-			});
-	};
-	//删除当前用户
-	function deleteuser(uid) {
-// 		alert("uid:"+uid);
-		var currentPage2=$("#currentPage3").val();//当前页
-		if (confirm('确认要删除该用户名')) {
-			//判断当前用户是否可以进行删除
-			$.ajax({
-				type : "get",
-				url : "${pageContext.request.contextPath}/userManage/ajaxConfirmDeleteUser.action",
-				data : {"uid":uid},
-				dataType : "json",
-				success : function(data) {
-// 					alert("成功");
-					if(data.name=="yes"){//可以删除
-						alert("删除用户成功！");
-						//跳转到删除用户action
-						window.location.href="${pageContext.request.contextPath}/userManage/deleteUser.action?uid="+uid+"&currentPage2="+currentPage2;
-					}
-					else{
-						alert("当前用户有很多信息，无法进行直接删除当前用户！");
-					}
-				},
-				error:function(data){
-					alert("fail");
-				}
+				error:function(data){alert("fail");}
 			});
 		}
-	}
-</script>
+
+		function deleteuser(uid) {
+			var currentPage2=$("#currentPage3").val();
+			if (confirm("确认要删除该用户?")) {
+				$.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath}/userManage/ajaxConfirmDeleteUser.action",
+					data : {"uid":uid},
+					dataType : "json",
+					success : function(data) {
+						if(data.name=="yes"){
+							alert("删除成功!");
+							window.location.href="${pageContext.request.contextPath}/userManage/deleteUser.action?uid="+uid+"&currentPage2="+currentPage2;
+						}
+						else{
+							alert("无法删除，用户有相关记录");
+						}
+					},
+					error:function(data){alert("fail");}
+				});
+			}
+		}
+	</script>
 </head>
 
 <body>
