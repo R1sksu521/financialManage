@@ -15,4 +15,9 @@ jdbc.password=${DB_PASS}
 EOF
 
 echo "DB: ${DB_HOST}:${DB_PORT}/${DB_NAME}"
+
+# Run DB migrations
+echo "Running DB migrations..."
+mariadb -h "${DB_HOST}" -P "${DB_PORT}" -u "${DB_USER}" -p"${DB_PASS}" "${DB_NAME}" -e "ALTER TABLE shouzhi_record MODIFY COLUMN szr_num DOUBLE;" 2>/dev/null || echo "Migration skipped (column may already be DOUBLE or table doesn't exist yet)"
+
 exec catalina.sh run

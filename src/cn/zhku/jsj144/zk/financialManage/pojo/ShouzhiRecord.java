@@ -5,7 +5,7 @@ import java.util.Date;
 //收支明细
 public class ShouzhiRecord {
 	private int szrid;//账单编号
-	private int szr_num;//收支金额
+	private double szr_num;//收支金额
 	
 	//注意：定义的数据类型是String类型
 	private String szr_date;//收支日期
@@ -27,10 +27,10 @@ public class ShouzhiRecord {
 	public void setSzrid(int szrid) {
 		this.szrid = szrid;
 	}
-	public int getSzr_num() {
+	public double getSzr_num() {
 		return szr_num;
 	}
-	public void setSzr_num(int szr_num) {
+	public void setSzr_num(double szr_num) {
 		this.szr_num = szr_num;
 	}
 	public String getSzr_date() {

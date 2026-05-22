@@ -128,12 +128,12 @@ public class ShouzhiRecordController {
 		shouzhiRecord.setShouzhiCategory(shouzhiCategory);
 
 		if("收入".equals(shouzhiCategory.getParent_category())){
-			int num=shouzhiRecord.getSzr_num();
+			double num=shouzhiRecord.getSzr_num();
 			if(num<0){
 				shouzhiRecord.setSzr_num(-num);
 			}
 		}else{
-			int num=shouzhiRecord.getSzr_num();
+			double num=shouzhiRecord.getSzr_num();
 			if(num>0){
 				shouzhiRecord.setSzr_num(-num);
 			}
@@ -193,12 +193,12 @@ public class ShouzhiRecordController {
 		String cat=shouzhiRecordService.findParentCategoryById(szcid);
 
 		if("支出".equals(cat)){
-			int num=shouzhiRecord.getSzr_num();
+			double num=shouzhiRecord.getSzr_num();
 			if(num>=0){
 				shouzhiRecord.setSzr_num(-num);
 			}
 		}else{
-			int num=shouzhiRecord.getSzr_num();
+			double num=shouzhiRecord.getSzr_num();
 			if(num<=0){
 				shouzhiRecord.setSzr_num(-num);
 			}
