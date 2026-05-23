@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 编辑新闻信息 -->
 	<update id="editNews" parameterType="news">
 		update news
-		set nTitle=#{nTitle},author=#{author},keyword=#{keyword},recordTime=#{recordTime}
+		set nTitle=#{nTitle},author=#{author},keyword=#{keyword},nContent=#{nContent},recordTime=#{recordTime}
 		where nid=#{nid}
 	</update>
 
