@@ -3,13 +3,6 @@
 $(function() {
 	// 点击显示 YYYY-MM-DD年月格式
 	
-	//这里是日期联动的关键        
-	function endDates() {
-	    //删除jeDate日历面板并重新初始化（应用新的minDate）
-	    $('#jedatebox').remove();
-	    $("#dayInputEnd").jeDate(end);
-	}
-	
 	//开始时间
 	var start = {
 		    format: 'YYYY-MM-DD',
@@ -23,7 +16,7 @@ $(function() {
 //		        endDates();
 //		    },
 		    okfun: function(elem, val){
-		        end.minDate = val + ' 00:00:00'; setTimeout(function(){ $('#dayInputEnd').jeDate(end); }, 200);
+		        end.minDate = val + ' 00:00:00'; setTimeout(function(){ $('#dayInputEnd').off('click').jeDate(end); }, 300);
 		   }
 	};
 	
