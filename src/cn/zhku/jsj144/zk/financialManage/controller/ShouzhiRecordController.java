@@ -68,8 +68,15 @@ public class ShouzhiRecordController {
 			if(shouzhiRecord.getSzr_date()!=null && !"".equals(shouzhiRecord.getSzr_date())){
 				request.setAttribute("date_condition", shouzhiRecord.getSzr_date());
 			}
-			if(shouzhiRecord.getShouzhiCategory()!=null && shouzhiRecord.getShouzhiCategory().getSzcid()!=0){
-				request.setAttribute("szcid_condition", shouzhiRecord.getShouzhiCategory().getSzcid());
+			// 直接从request读取szcid参数（Spring MVC嵌套对象绑定可能失效）
+			String szcidParam = request.getParameter("shouzhiCategory.szcid");
+			if(szcidParam != null && !"".equals(szcidParam) && !"0".equals(szcidParam)){
+				int szcid = Integer.parseInt(szcidParam);
+				if(shouzhiRecord.getShouzhiCategory() == null){
+					shouzhiRecord.setShouzhiCategory(new ShouzhiCategory());
+				}
+				shouzhiRecord.getShouzhiCategory().setSzcid(szcid);
+				request.setAttribute("szcid_condition", szcid);
 			}
 		}
 

@@ -148,15 +148,25 @@ public class NewsManageController {
 		if (content != null && !content.trim().isEmpty()) {
 			String thingPath = news.getnContent();//将编辑器的内容写到原来文件中，覆盖原来的文件
 			if (thingPath != null && !thingPath.isEmpty()) {
-				//重写文件
-				File fileText = new File(thingPath);// 创建文件
+				File fileText = new File(thingPath);
 				File fileParent = fileText.getParentFile();
 				if (fileParent != null && !fileParent.exists()) {
-					fileParent.mkdirs();
+					if (!fileParent.mkdirs() && !fileParent.exists()) {
+						// 跨平台兼容：Windows路径在Linux上无法创建(如d:/upload/...)
+						// 使用服务器实际路径重新生成
+						System.out.println("原路径不可用，生成新路径...");
+						String realPath = request.getServletContext().getRealPath("/") + "upload/news";
+						String uuidName = generateUUIDName();
+						String savePath = generateSavePath(realPath, uuidName);
+						thingPath = savePath + uuidName + ".txt";
+						news.setnContent(thingPath);// 更新为新的有效路径
+						fileText = new File(thingPath);
+						fileText.getParentFile().mkdirs();
+					}
 				}
-				FileWriter fileWriter = new FileWriter(fileText);// 向文件写入对象写入信息
-				fileWriter.write(content);// 向文件中写入String字符串的内容
-				fileWriter.close();// 关闭
+				FileWriter fileWriter = new FileWriter(fileText);
+				fileWriter.write(content);
+				fileWriter.close();
 				System.out.println("文件写入成功: "+thingPath);
 			}
 		}

@@ -5,8 +5,9 @@ $(function() {
 	
 	//这里是日期联动的关键        
 	function endDates() {
-	    //先解绑旧的jeDate事件，再重新初始化（应用新的minDate）
-	    $("#dayInputEnd").off('click focus').jeDate(end);
+	    //删除jeDate日历面板并重新初始化（应用新的minDate）
+	    $('#jedatebox').remove();
+	    $("#dayInputEnd").jeDate(end);
 	}
 	
 	//开始时间
@@ -22,7 +23,7 @@ $(function() {
 //		        endDates();
 //		    },
 		    okfun: function(elem, val){
-		        end.minDate = val; //开始日选好后，重置结束日的最小日期（结束日>=开始日）
+		        end.minDate = val + ' 00:00:00'; //开始日选好后，截至日期>=起始日期
 		        endDates();
 		   }
 	};
@@ -37,13 +38,7 @@ $(function() {
 ////	    	start.maxDate = obj.val; //将结束日的初始值设定为开始日的最大日期
 //	    },
 	    okfun: function(elem, val){
-	        var startVal = $('#dayInputStart').val();
-	        if (startVal && val < startVal) {
-	            alert('截止日期不能小于起始日期！请重新选择。');
-	            $('#dayInputEnd').val('');
-	            return false;
-	        }
-	        start.maxDate = val; //结束日选好后，重置开始日的最大日期（开始日<=结束日）
+	        start.maxDate = val + ' 23:59:59'; //结束日选好后，起始日期<=截至日期
 	    }
 	};
 	
