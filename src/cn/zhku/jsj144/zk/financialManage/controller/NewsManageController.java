@@ -1,4 +1,4 @@
-﻿package cn.zhku.jsj144.zk.financialManage.controller;
+package cn.zhku.jsj144.zk.financialManage.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,73 +35,51 @@ public class NewsManageController {
 
 	//新闻列表
 	@RequestMapping("/findNewsList.action")
-	public String findNewsList(News news,Integer currentPage,Model model){//无条件分页查询+有条件分页查询
-		//查询条件：文章标题+文章作者+文章关键字     +  当前页
-		//当前页，默认情况下，currentPage=0   提交过来是第1页
-
+	public String findNewsList(News news,Integer currentPage,Model model){
 		model.addAttribute("findNews", news);
-
-		PageBean<News> pageBean=newsService.findNewsList(news,currentPage);//分页查询新闻列表
-		if(pageBean.getPageList().size()==0){//确保为空
+		PageBean<News> pageBean=newsService.findNewsList(news,currentPage);
+		if(pageBean.getPageList().size()==0){
 			pageBean.setPageList(null);
 		}
-		model.addAttribute("pageBean", pageBean);//分页查询结果
-
-		return "/admin/newsManage.jsp";//收支分类结果
+		model.addAttribute("pageBean", pageBean);
+		return "/admin/newsManage.jsp";
 	}
 
 	//添加新闻
 	@RequestMapping("/addNews.action")
-	public String addNews(News news, MultipartFile file,String editvalue,HttpServletRequest request) throws IllegalStateException, IOException{//上传文件
-
-		//判断逻辑，方式二的文件名不为空，则以方式的形式进行上传文件，否则，以方式一的形式进行上传文件
-
-		String nContent=null;//上传的文件路径
-
-		String realPath = request.getServletContext().getRealPath("/") + "upload/news"; // 存到webapp目录下，可直接通过URL访问
-		String uuidName = generateUUIDName();// 生成唯一的文件名
-		String savePath = generateSavePath(realPath, uuidName);// 生成随机文件夹  --d:/upload/news/1/2/
-//		System.out.println(file==null);//false
-		//方式二：
-		if(file.getOriginalFilename()!=null&&!"".equals(file.getOriginalFilename())){//上传文件名不为空
+	public String addNews(News news, MultipartFile file,String editvalue,HttpServletRequest request) throws IllegalStateException, IOException{
+		String nContent=null;
+		String realPath = request.getServletContext().getRealPath("/") + "upload/news";
+		String uuidName = generateUUIDName();
+		String savePath = generateSavePath(realPath, uuidName);
+		if(file.getOriginalFilename()!=null&&!"".equals(file.getOriginalFilename())){
 			System.out.println("方式二：上传文件");
-			String oriName = file.getOriginalFilename();// 获取文件名(xxx.xxx)
-			String extName = oriName.substring(oriName.lastIndexOf("."));// 获取文件后缀
-			nContent=savePath + uuidName + extName;//上传的文件名
-			file.transferTo(new File(nContent));//springmvc上传文件
+			String oriName = file.getOriginalFilename();
+			String extName = oriName.substring(oriName.lastIndexOf("."));
+			nContent=savePath + uuidName + extName;
+			file.transferTo(new File(nContent));
 		}
 		else{
 			System.out.println("方式一：上传文件");
-			// 拿到编辑器的内容
-			//方式一：
-			String content = request.getParameter("editorValue");// 获得输入编辑框的内容【带有格式的内容】
-			// 最终的文件路径名 d:/upload/news/1/2/ xxx.txt
+			String content = request.getParameter("editorValue");
 			nContent = savePath + uuidName + ".txt";
-			// 创建文件对象
-			File fileText = new File(nContent);// 创建文件
-			FileWriter fileWriter = new FileWriter(fileText);// 向文件写入对象写入信息
-			fileWriter.write(content);// 向文件中写入String字符串的内容
-			fileWriter.close();// 关闭
+			File fileText = new File(nContent);
+			FileWriter fileWriter = new FileWriter(fileText);
+			fileWriter.write(content);
+			fileWriter.close();
 		}
-
-		//添加新闻
-		news.setnContent(nContent);//设置文件路径
-		news.setVisitCount(0);//设置访问次数
-		newsService.addNews(news);//添加新闻
-
-		return "redirect:/newsManage/findNewsList.action";//上传成功   列表页面
+		news.setnContent(nContent);
+		news.setVisitCount(0);
+		newsService.addNews(news);
+		return "redirect:/newsManage/findNewsList.action";
 	}
 
 
 	//编辑新闻页面
-	//编辑新闻页面
 	@RequestMapping("/toEditPage.action")
 	public String toEditPage(Integer nid,Model model,Integer currentPage){
-		News news=newsService.queryNewsById(nid);//通过id查询当前新闻信息
-
-		// 根据新闻路径，读取新闻文件内容
+		News news=newsService.queryNewsById(nid);
 		String thingPath = news.getnContent();
-
 		int len = 0;
 		StringBuffer str = new StringBuffer("");
 		if (thingPath != null && !thingPath.isEmpty()) {
@@ -125,7 +103,6 @@ public class NewsManageController {
 			}
 		}
 		String content=str.toString();
-
 		model.addAttribute("content",content);
 		model.addAttribute("news", news);
 		model.addAttribute("currentPage", currentPage);
@@ -133,64 +110,51 @@ public class NewsManageController {
 	}
 
 	//编辑新闻信息
-	@RequestMapping("/editNews.action")      //  修改文件内容！！！！！！！！！
+	@RequestMapping("/editNews.action")
 	public String editNews(News news,String editvalue,HttpServletRequest request,Integer currentPage2) throws IOException{
-
 		try {
 		System.out.println("修改-------------------------");
 		System.out.println(news.getAuthor()+"::"+news.getKeyword()+":::"+news.getnTitle()+":::"+news.getRecordTime());
-		System.out.println("路径:"+news.getnContent());
+		System.out.println("原路径:"+news.getnContent());
 
-		// 拿到编辑器的内容
-		String content = editvalue;// 带有格式的内容（已通过hidden input提交）
+		String content = editvalue;
 		System.out.println("编辑器内容长度："+ (content != null ? content.length() : 0) +"字符");
-		//写文件，到那个路径
+
 		if (content != null && !content.trim().isEmpty()) {
-			String thingPath = news.getnContent();//将编辑器的内容写到原来文件中，覆盖原来的文件
-			if (thingPath != null && !thingPath.isEmpty()) {
-				File fileText = new File(thingPath);
-				File fileParent = fileText.getParentFile();
-				if (fileParent != null && !fileParent.exists()) {
-					if (!fileParent.mkdirs() && !fileParent.exists()) {
-						// 跨平台兼容：Windows路径在Linux上无法创建(如d:/upload/...)
-						// 使用服务器实际路径重新生成
-						System.out.println("原路径不可用，生成新路径...");
-						String realPath = request.getServletContext().getRealPath("/") + "upload/news";
-						String uuidName = generateUUIDName();
-						String savePath = generateSavePath(realPath, uuidName);
-						thingPath = savePath + uuidName + ".txt";
-						news.setnContent(thingPath);// 更新为新的有效路径
-						fileText = new File(thingPath);
-						fileText.getParentFile().mkdirs();
-					}
-				}
-				FileWriter fileWriter = new FileWriter(fileText);
-				fileWriter.write(content);
-				fileWriter.close();
-				System.out.println("文件写入成功: "+thingPath);
-			}
+			String thingPath = news.getnContent();
+			// 总是生成新路径（跨平台兼容：Windows路径在Linux上无效）
+			String realPath = request.getServletContext().getRealPath("/") + "upload/news";
+			String uuidName = generateUUIDName();
+			String savePath = generateSavePath(realPath, uuidName);
+			thingPath = savePath + uuidName + ".txt";
+			news.setnContent(thingPath);
+			System.out.println("新路径:"+thingPath);
+			// 写入文件
+			File fileText = new File(thingPath);
+			fileText.getParentFile().mkdirs();
+			FileWriter fileWriter = new FileWriter(fileText);
+			fileWriter.write(content);
+			fileWriter.close();
+			System.out.println("文件写入成功");
 		}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("编辑新闻异常: " + e.getClass().getName() + " - " + e.getMessage());
 		}
 
-		//编辑新闻信息（即使文件写入失败，也更新数据库中的标题/作者/关键字/日期）
+		// 即使文件写入失败，也更新数据库
 		newsService.editNews(news);
 		int page = (currentPage2 != null) ? currentPage2 : 0;
-		return "redirect:/newsManage/findNewsList.action?currentPage="+page;//当前页，在分页的时候进行了保存
+		return "redirect:/newsManage/findNewsList.action?currentPage="+page;
 	}
 
 	//删除新闻信息
 	@RequestMapping("/deleteNews.action")
 	public String deleteNews(int  nid,Integer currentPage2){
-		newsService.deleteNews(nid);//删除新闻信息
-
-		//如果当前页，只有一条记录，删除后，应该返回上一页
-		//每页记录是是10条，查询新闻的总记录数
+		newsService.deleteNews(nid);
 		int pageRecord=10;
-		int count=newsService.countNews();//查询当前所有新闻记录数
-		int allPage=0;//当前总页数
+		int count=newsService.countNews();
+		int allPage=0;
 		if(count%pageRecord==0){
 			allPage=count/pageRecord;
 		}
@@ -198,17 +162,13 @@ public class NewsManageController {
 			allPage=count/pageRecord+1;
 		}
 		allPage=allPage-1;
-
 		if(currentPage2>allPage){
-			currentPage2=currentPage2-1;//上一页
+			currentPage2=currentPage2-1;
 		}
-//		"/newsManage/findNewsList.action
-		return "redirect:/newsManage/findNewsList.action?currentPage="+currentPage2;//当前页，在分页的时候进行了保存
+		return "redirect:/newsManage/findNewsList.action?currentPage="+currentPage2;
 	}
 
-
 	//新闻详情页
-
 
 	// 生成唯一的文件名
 	private static String generateUUIDName() {
@@ -217,16 +177,14 @@ public class NewsManageController {
 
 	// 生成随机文件夹
 	private static String generateSavePath(String realPath, String filename) {
-
 		int hashCode = filename.hashCode();
-		// 通过位运算，计算出一级和二级目录的数字
-		int first = hashCode & (0xf);// 以及目录
-		int second = (hashCode >> 4) & (0xf);// 二级目录
+		int first = hashCode & (0xf);
+		int second = (hashCode >> 4) & (0xf);
 		String savePath = realPath + "/" + first + "/" + second + "/";
 		File f = new File(savePath);
 		if (!f.exists()) {
-			f.mkdirs();// 创建多级目录
+			f.mkdirs();
 		}
-		return savePath;// 保存路径
+		return savePath;
 	}
 }
