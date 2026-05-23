@@ -112,39 +112,44 @@ public class NewsManageController {
 	//编辑新闻信息
 	@RequestMapping("/editNews.action")
 	public String editNews(News news,String editvalue,HttpServletRequest request,Integer currentPage2) throws IOException{
+		int page = (currentPage2 != null) ? currentPage2 : 0;
 		try {
-		System.out.println("修改-------------------------");
-		System.out.println(news.getAuthor()+"::"+news.getKeyword()+":::"+news.getnTitle()+":::"+news.getRecordTime());
-		System.out.println("原路径:"+news.getnContent());
+			System.out.println("修改-------------------------");
+			System.out.println(news.getAuthor()+"::"+news.getKeyword()+":::"+news.getnTitle()+":::"+news.getRecordTime());
+			System.out.println("原路径:"+news.getnContent());
 
-		String content = editvalue;
-		System.out.println("编辑器内容长度："+ (content != null ? content.length() : 0) +"字符");
+			String content = editvalue;
+			System.out.println("编辑器内容长度："+ (content != null ? content.length() : 0) +"字符");
 
-		if (content != null && !content.trim().isEmpty()) {
-			String thingPath = news.getnContent();
-			// 总是生成新路径（跨平台兼容：Windows路径在Linux上无效）
-			String realPath = request.getServletContext().getRealPath("/") + "upload/news";
-			String uuidName = generateUUIDName();
-			String savePath = generateSavePath(realPath, uuidName);
-			thingPath = savePath + uuidName + ".txt";
-			news.setnContent(thingPath);
-			System.out.println("新路径:"+thingPath);
-			// 写入文件
-			File fileText = new File(thingPath);
-			fileText.getParentFile().mkdirs();
-			FileWriter fileWriter = new FileWriter(fileText);
-			fileWriter.write(content);
-			fileWriter.close();
-			System.out.println("文件写入成功");
-		}
+			if (content != null && !content.trim().isEmpty()) {
+				String realPath = request.getServletContext().getRealPath("/");
+				if (realPath == null) {
+					realPath = System.getProperty("java.io.tmpdir") + "/financialManage";
+				}
+				realPath = realPath + "/upload/news";
+				String uuidName = generateUUIDName();
+				String savePath = generateSavePath(realPath, uuidName);
+				String thingPath = savePath + uuidName + ".txt";
+				System.out.println("新路径:"+thingPath);
+
+				File fileText = new File(thingPath);
+				fileText.getParentFile().mkdirs();
+				FileWriter fileWriter = new FileWriter(fileText);
+				fileWriter.write(content);
+				fileWriter.close();
+				System.out.println("文件写入成功");
+
+				news.setnContent(thingPath);
+			}
+			newsService.editNews(news);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("编辑新闻异常: " + e.getClass().getName() + " - " + e.getMessage());
+			request.setAttribute("errorMsg", "保存新闻失败：" + e.getMessage());
+			request.setAttribute("news", news);
+			request.setAttribute("currentPage", page);
+			return "/admin/news/editnews.jsp";
 		}
-
-		// 即使文件写入失败，也更新数据库
-		newsService.editNews(news);
-		int page = (currentPage2 != null) ? currentPage2 : 0;
 		return "redirect:/newsManage/findNewsList.action?currentPage="+page;
 	}
 

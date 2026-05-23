@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%> --%>
 
@@ -151,7 +151,7 @@
 <!-- 					<div class="col-md-1 "></div> -->
 					<div class="col-md-12">
 						<div id="addNewsContent">
-							<form name="upfile" id="upfile" method="post"
+							<form name="upfile" id="upfile" method="post" enctype="multipart/form-data"
 								action="${pageContext.request.contextPath}/newsManage/editNews.action">
 								<div class="row">
 									<div class="col-md-12 col-xs-12">

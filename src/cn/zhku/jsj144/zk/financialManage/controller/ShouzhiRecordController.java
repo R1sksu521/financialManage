@@ -2,7 +2,6 @@ package cn.zhku.jsj144.zk.financialManage.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,10 +40,8 @@ public class ShouzhiRecordController {
 	@Autowired
 	private NewsService newsService;
 
-	// ====================== 修复点 1：全局预加载，所有页面都能用 ======================
 	@ModelAttribute
 	public void loadCategories(HttpSession session) {
-		// 每次请求前自动加载，存入session，添加页面也能正常获取
 		List<ShouzhiCategory> incomes = shouzhiCategoryService.findShouzhiCategoryByParent("收入");
 		session.setAttribute("incomes", incomes);
 		List<ShouzhiCategory> spends = shouzhiCategoryService.findShouzhiCategoryByParent("支出");
@@ -53,7 +50,7 @@ public class ShouzhiRecordController {
 
 	//账单明细 +分页+多条件
 	@RequestMapping(value="findShouzhiRecord.action")
-	public String findShouzhiRecord(ShouzhiRecord shouzhiRecord,HttpServletRequest request) throws UnsupportedEncodingException{
+	public String findShouzhiRecord(ShouzhiRecord shouzhiRecord,HttpServletRequest request){
 
 		int currentPage=0;
 		if(request.getParameter("currentPage")!=null){
@@ -68,21 +65,10 @@ public class ShouzhiRecordController {
 			if(shouzhiRecord.getSzr_date()!=null && !"".equals(shouzhiRecord.getSzr_date())){
 				request.setAttribute("date_condition", shouzhiRecord.getSzr_date());
 			}
-			// 直接从request读取szcid参数
-			String szcidParam = request.getParameter("szcid");
-			if(szcidParam != null && !"".equals(szcidParam) && !"0".equals(szcidParam)){
-				int szcid = Integer.parseInt(szcidParam);
-				if(shouzhiRecord.getShouzhiCategory() == null){
-					shouzhiRecord.setShouzhiCategory(new ShouzhiCategory());
-				}
-				shouzhiRecord.getShouzhiCategory().setSzcid(szcid);
-				request.setAttribute("szcid_condition", szcid);
-			}
 		}
 
 		PageBean<ShouzhiRecord> pageBean= shouzhiRecordService.findShouzhiRecord(currentPage,user,shouzhiRecord);
 
-		// 直接从handler设置收支类型到session，不单靠@ModelAttribute
 		List<ShouzhiCategory> incomes = shouzhiCategoryService.findShouzhiCategoryByParent("收入");
 		List<ShouzhiCategory> spends = shouzhiCategoryService.findShouzhiCategoryByParent("支出");
 		request.getSession().setAttribute("incomes", incomes);
@@ -164,19 +150,17 @@ public class ShouzhiRecordController {
 		return "OK";
 	}
 
-	// ====================== 修复点 2：添加前先加载数据 ======================
 	@RequestMapping("toAddPage.action")
 	public String toAddPage(HttpServletRequest request) {
 		User user = (User) request.getSession().getAttribute("user");
 		if (user == null) {
 			return "/index.jsp";
 		}
-		// 跳转到添加页面时，强制把分类放入request，确保前端一定能拿到
 		List<ShouzhiCategory> incomes = shouzhiCategoryService.findShouzhiCategoryByParent("收入");
 		List<ShouzhiCategory> spends = shouzhiCategoryService.findShouzhiCategoryByParent("支出");
 		request.setAttribute("incomes", incomes);
 		request.setAttribute("spends", spends);
-		return "/jsp/addShouzhi.jsp"; // 你自己的添加页面路径
+		return "/jsp/addShouzhi.jsp";
 	}
 
 	//添加收支记录

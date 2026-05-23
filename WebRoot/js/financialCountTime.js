@@ -16,7 +16,10 @@ $(function() {
 //		        endDates();
 //		    },
 		    okfun: function(elem, val){
-		        end.minDate = val + ' 00:00:00'; setTimeout(function(){ $('#dayInputEnd').off('click').jeDate(end); }, 300);
+		        end.minDate = val + ' 00:00:00';
+		        var curEnd = $('#dayInputEnd').val();
+		        if (curEnd && curEnd < val) { $('#dayInputEnd').val(''); }
+		        setTimeout(function(){ $('#dayInputEnd').off('click').jeDate(end); }, 300);
 		   }
 	};
 	
@@ -30,7 +33,10 @@ $(function() {
 ////	    	start.maxDate = obj.val; //将结束日的初始值设定为开始日的最大日期
 //	    },
 	    okfun: function(elem, val){
-	        start.maxDate = val + ' 23:59:59'; //结束日选好后，起始日期<=截至日期
+	        start.maxDate = val + ' 23:59:59';
+	        var curStart = $('#dayInputStart').val();
+	        if (curStart && curStart > val) { $('#dayInputStart').val(''); }
+	        setTimeout(function(){ $('#dayInputStart').off('click').jeDate(start); }, 300);
 	    }
 	};
 	
