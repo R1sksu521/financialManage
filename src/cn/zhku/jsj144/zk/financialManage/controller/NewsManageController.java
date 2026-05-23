@@ -139,7 +139,7 @@ public class NewsManageController {
 		System.out.println("路径:"+news.getnContent());
 		
 		// 拿到编辑器的内容
-		String content = request.getParameter("editorValue");// 带有格式的内容
+		String content = editvalue;// 带有格式的内容（已通过hidden input提交）
 		System.out.println("编辑器内容：--"+editvalue);
 		//写文件，到那个路径
 		String thingPath =news.getnContent();//将编辑器的内容写到原来文件中，覆盖原来的文件

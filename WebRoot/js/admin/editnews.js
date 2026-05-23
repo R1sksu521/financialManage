@@ -73,7 +73,7 @@ $(function() {
 		var flag6=true;//上传内容判断结果
 		
 		//编辑框的内容的非空判断
-		$("#editvalue").val(UE.getEditor('editor').getPlainTxt());//纯文本格式的内容存放在input标签中
+		$("#editvalue").val(UE.getEditor('editor').getContent());//带格式的HTML内容存放在input标签中
 		var edit = $("#editvalue").val();
 		var replaceEdit = edit.replace( /^\s*/, '');//去除左边空格之后的值
 		if (replaceEdit.length == 0) {

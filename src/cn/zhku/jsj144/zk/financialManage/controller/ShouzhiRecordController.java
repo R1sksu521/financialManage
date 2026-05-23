@@ -65,13 +65,11 @@ public class ShouzhiRecordController {
 		}
 
 		if(shouzhiRecord!=null){
-			if(shouzhiRecord.getSzr_date()!=null){
+			if(shouzhiRecord.getSzr_date()!=null && !"".equals(shouzhiRecord.getSzr_date())){
 				request.setAttribute("date_condition", shouzhiRecord.getSzr_date());
 			}
-			if(shouzhiRecord.getSzr_comment()!=null){
-				String com=new String((shouzhiRecord.getSzr_comment()).getBytes("ISO-8859-1"),"utf-8");
-				request.setAttribute("comment_condition", com);
-				shouzhiRecord.setSzr_comment(com);
+			if(shouzhiRecord.getSzr_comment()!=null && !"".equals(shouzhiRecord.getSzr_comment())){
+				request.setAttribute("comment_condition", shouzhiRecord.getSzr_comment().trim());
 			}
 		}
 

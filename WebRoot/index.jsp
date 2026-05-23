@@ -103,7 +103,6 @@
 								<p class="text-muted" style="font-size:12px; margin-top:5px;">
 									游客仅可浏览财务新闻，无法使用记账等功能
 								</p>
-							</div>
 						</div>
 
 					</form>
@@ -111,7 +110,9 @@
 				<!-- col-md-4 -->
 			</div>
 			<!-- row -->
-			
+			</div>
+			<!-- row -->
+
 			<!-- row -->
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">
@@ -170,9 +171,7 @@
 				</div>
 			</div>
 		</div>
-		<!--main-box  -->
-	</div>
-	<!-- container -->
+		<!-- container -->
 
 
 </body>

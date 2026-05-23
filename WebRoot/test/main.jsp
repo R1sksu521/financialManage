@@ -301,8 +301,8 @@
 													 readonly="readonly">
 											</span>
 											<span>
-												<label for="beizhu" style="font-size:20px;" class="hidden-xs">收支备注</label> 
-												<input type="text" name="szr_comment" id="beizhu" class="form-control hidden-xs"
+												<label for="beizhu" style="font-size:20px;">收支备注</label>
+												<input type="text" name="szr_comment" id="beizhu" class="form-control"
 													placeholder="请输入收支备注名" value="${comment_condition}">
 											</span>
 <!-- 											<div class="form-group ">col-md-4 col-xs-4 -->

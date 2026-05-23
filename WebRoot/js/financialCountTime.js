@@ -31,7 +31,7 @@ $(function() {
 	//结束时间
 	var end = {
 	    format: 'YYYY-MM-DD',
-	    minDate: $.nowDate({DD:0}), //设定最小日期为当前日期
+	    minDate: '2014-06-16 23:59:59', //设定最小日期（允许查询历史数据）
 	    maxDate: '2099-06-16 23:59:59', //最大日期
 //	    choosefun:function(obj){
 //	    	start.maxDate = obj.val; //将结束日的初始值设定为开始日的最大日期
