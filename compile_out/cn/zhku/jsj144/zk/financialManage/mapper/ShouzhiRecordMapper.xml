@@ -15,9 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="szr_comment != null and szr_comment!=''">
 			and szr_comment like '%${szr_comment}%'
 		</if>
-		<if test="szcid != null and szcid != 0">
-			and shouzhi_category_id = #{szcid}
-		</if>
 	</select>
 
 
@@ -75,9 +72,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="szr_comment != null and szr_comment!= ''">
 			and rec.szr_comment like '%${szr_comment}%'
-		</if>
-		<if test="szcid != null and szcid != 0">
-			and rec.shouzhi_category_id = #{szcid}
 		</if>
 		order by rec.szr_date desc
 		limit #{startPosition},#{pageRecord}
