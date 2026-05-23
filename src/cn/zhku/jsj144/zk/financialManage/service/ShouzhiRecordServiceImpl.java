@@ -56,7 +56,10 @@ public class ShouzhiRecordServiceImpl implements ShouzhiRecordService {
 				map.put("szr_comment", shouzhiRecord.getSzr_comment());
 //				System.out.println("map3:"+map.get("szr_comment"));
 			}
-		}
+				if(shouzhiRecord.getShouzhiCategory()!=null && shouzhiRecord.getShouzhiCategory().getSzcid()!=0){
+					map.put("szcid", shouzhiRecord.getShouzhiCategory().getSzcid());
+				}
+			}
 //		System.out.println("map:----"+map.size());
 		allRecord=shouzhiRecordMapper.findShouzhiRecordCount(map);
 //		System.out.println("总记录数：------"+allRecord);
@@ -95,9 +98,12 @@ public class ShouzhiRecordServiceImpl implements ShouzhiRecordService {
 			if(shouzhiRecord.getSzr_comment()!=null&&!"".equals(shouzhiRecord.getSzr_comment())){
 				queryVo.setSzr_comment(shouzhiRecord.getSzr_comment());
 			}
-		}
-		
-		//调试！！！！！
+				if(shouzhiRecord.getShouzhiCategory()!=null && shouzhiRecord.getShouzhiCategory().getSzcid()!=0){
+					queryVo.setSzcid(shouzhiRecord.getShouzhiCategory().getSzcid());
+				}
+			}
+
+			//调试！！！！！
 		/*System.out.println("uid:--------"+user.getUid());
 		System.out.println("startPosition:--------"+startPosition);
 		System.out.println("pageRecord:--------"+pageRecord);*/

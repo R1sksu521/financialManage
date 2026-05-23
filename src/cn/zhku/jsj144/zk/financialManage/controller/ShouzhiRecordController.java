@@ -68,10 +68,8 @@ public class ShouzhiRecordController {
 			if(shouzhiRecord.getSzr_date()!=null && !"".equals(shouzhiRecord.getSzr_date())){
 				request.setAttribute("date_condition", shouzhiRecord.getSzr_date());
 			}
-			if(shouzhiRecord.getSzr_comment()!=null && !"".equals(shouzhiRecord.getSzr_comment())){
-				String com = shouzhiRecord.getSzr_comment().trim();
-				request.setAttribute("comment_condition", com);
-				shouzhiRecord.setSzr_comment(com);
+			if(shouzhiRecord.getShouzhiCategory()!=null && shouzhiRecord.getShouzhiCategory().getSzcid()!=0){
+				request.setAttribute("szcid_condition", shouzhiRecord.getShouzhiCategory().getSzcid());
 			}
 		}
 

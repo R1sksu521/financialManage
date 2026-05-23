@@ -301,9 +301,20 @@
 													 readonly="readonly">
 											</span>
 											<span>
-												<label for="beizhu" style="font-size:20px;">收支备注</label>
-												<input type="text" name="szr_comment" id="beizhu" class="form-control"
-													placeholder="请输入收支备注名" value="${comment_condition}">
+												<label for="categorySelect" style="font-size:20px;">收支类型</label>
+												<select name="shouzhiCategory.szcid" id="categorySelect" class="form-control" style="width:180px;">
+													<option value="0">--全部类型--</option>
+													<optgroup label="收入">
+														<c:forEach items="${sessionScope.incomes}" var="inc">
+															<option value="${inc.szcid}">${inc.son_category}</option>
+														</c:forEach>
+													</optgroup>
+													<optgroup label="支出">
+														<c:forEach items="${sessionScope.spends}" var="spd">
+															<option value="${spd.szcid}">${spd.son_category}</option>
+														</c:forEach>
+													</optgroup>
+												</select>
 											</span>
 <!-- 											<div class="form-group ">col-md-4 col-xs-4 -->
 												<label><input type="submit" id="shouzhiSubmit" class="btn btn-primary" value="查询" ></label>
@@ -382,11 +393,11 @@
 								<div align="center">
 									<ul class="pagger pagination pagination-lg">
 										<li><a
-											href="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action?currentPage=0&szr_date=${date_condition}&szr_comment=${comment_condition}"
+											href="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action?currentPage=0&szr_date=${date_condition}&shouzhiCategory.szcid=${szcid_condition}"
 											id="pageThing">首页</a></li>
 										<li><c:if test="${pageBean.currentPage-1>=0}">
 												<a
-													href="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action?currentPage=${pageBean.currentPage-1}&szr_date=${date_condition}&szr_comment=${comment_condition} "
+													href="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action?currentPage=${pageBean.currentPage-1}&szr_date=${date_condition}&shouzhiCategory.szcid=${szcid_condition} "
 													id="pageThing">上一页</a>
 											</c:if> <c:if test="${pageBean.currentPage-1<0}">
 												<a href="javascript:void(0)" id="pageThing">上一页</a>
@@ -394,13 +405,13 @@
 										<li><c:if
 												test="${pageBean.currentPage+1<pageBean.allPage}">
 												<a
-													href="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action?currentPage=${pageBean.currentPage+1}&szr_date=${date_condition}&szr_comment=${comment_condition}"
+													href="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action?currentPage=${pageBean.currentPage+1}&szr_date=${date_condition}&shouzhiCategory.szcid=${szcid_condition}"
 													id="pageThing">下一页</a>
 											</c:if> <c:if test="${pageBean.currentPage+1>=pageBean.allPage}">
 												<a href="javascript:void(0)" id="pageThing">下一页</a>
 											</c:if></li>
 										<li><a
-											href="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action?currentPage=${pageBean.allPage-1}&szr_date=${date_condition}&szr_comment=${comment_condition}"
+											href="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action?currentPage=${pageBean.allPage-1}&szr_date=${date_condition}&shouzhiCategory.szcid=${szcid_condition}"
 											id="pageThing">尾页</a></li>
 									</ul>
 								</div>

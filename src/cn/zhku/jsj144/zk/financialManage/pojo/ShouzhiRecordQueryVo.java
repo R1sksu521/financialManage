@@ -17,6 +17,7 @@ public class ShouzhiRecordQueryVo {
 	private int pageRecord;//每页记录数
 	private String szr_date;//查询--收支日期条件
 	private String szr_comment;//查询--收支备注条件
+	private Integer szcid;//查询--收支类别ID
 	public int getUid() {
 		return uid;
 	}
@@ -47,5 +48,11 @@ public class ShouzhiRecordQueryVo {
 	public void setSzr_comment(String szr_comment) {
 		this.szr_comment = szr_comment;
 	}
-	
+	public Integer getSzcid() {
+		return szcid;
+	}
+	public void setSzcid(Integer szcid) {
+		this.szcid = szcid;
+	}
+
 }

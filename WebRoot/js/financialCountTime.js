@@ -37,6 +37,12 @@ $(function() {
 ////	    	start.maxDate = obj.val; //将结束日的初始值设定为开始日的最大日期
 //	    },
 	    okfun: function(elem, val){
+	        var startVal = $('#dayInputStart').val();
+	        if (startVal && val < startVal) {
+	            alert('截止日期不能小于起始日期！请重新选择。');
+	            $('#dayInputEnd').val('');
+	            return false;
+	        }
 	        start.maxDate = val; //结束日选好后，重置开始日的最大日期（开始日<=结束日）
 	    }
 	};
