@@ -1,4 +1,4 @@
-
+﻿
 
 $(function() {
 	// 点击显示 YYYY-MM-DD年月格式
@@ -23,8 +23,7 @@ $(function() {
 //		        endDates();
 //		    },
 		    okfun: function(elem, val){
-		        end.minDate = val + ' 00:00:00'; //开始日选好后，截至日期>=起始日期
-		        endDates();
+		        end.minDate = val + ' 00:00:00'; setTimeout(function(){ $('#dayInputEnd').jeDate(end); }, 200);
 		   }
 	};
 	
