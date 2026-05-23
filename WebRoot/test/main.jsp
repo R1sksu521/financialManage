@@ -292,7 +292,7 @@
 								<div class="panel-body">
 									<form class="form-inline" id="selectByCondition"
 										action="${pageContext.request.contextPath}/shouzhiRecord/findShouzhiRecord.action"
-										method="get">
+										method="post">
 									<div class="col-md-11 col-md-offset-1 col-xs-11 col-xs-offset-1 " id="shouzhi_top">
 											<span>
 												<label for="attYearMonth" style="font-size:20px;" class="hidden-xs">收支年月</label>

@@ -28,36 +28,36 @@ import cn.zhku.jsj144.zk.financialManage.pojo.User;
 import cn.zhku.jsj144.zk.financialManage.service.NewsService;
 @Controller
 @RequestMapping("/newsManage")
-public class NewsManageController { 
+public class NewsManageController {
 
 	@Autowired
 	private NewsService newsService;
-	
+
 	//新闻列表
 	@RequestMapping("/findNewsList.action")
 	public String findNewsList(News news,Integer currentPage,Model model){//无条件分页查询+有条件分页查询
-		//查询条件：文章标题+文章作者+文章关键字     +  当前页 
-		//当前页，默认情况下，currentPage=0   提交过来是第1页  
-		
+		//查询条件：文章标题+文章作者+文章关键字     +  当前页
+		//当前页，默认情况下，currentPage=0   提交过来是第1页
+
 		model.addAttribute("findNews", news);
-		
+
 		PageBean<News> pageBean=newsService.findNewsList(news,currentPage);//分页查询新闻列表
 		if(pageBean.getPageList().size()==0){//确保为空
 			pageBean.setPageList(null);
 		}
 		model.addAttribute("pageBean", pageBean);//分页查询结果
-		
+
 		return "/admin/newsManage.jsp";//收支分类结果
 	}
-	
+
 	//添加新闻
 	@RequestMapping("/addNews.action")
 	public String addNews(News news, MultipartFile file,String editvalue,HttpServletRequest request) throws IllegalStateException, IOException{//上传文件
-		
+
 		//判断逻辑，方式二的文件名不为空，则以方式的形式进行上传文件，否则，以方式一的形式进行上传文件
-		
+
 		String nContent=null;//上传的文件路径
-		
+
 		String realPath = request.getServletContext().getRealPath("/") + "upload/news"; // 存到webapp目录下，可直接通过URL访问
 		String uuidName = generateUUIDName();// 生成唯一的文件名
 		String savePath = generateSavePath(realPath, uuidName);// 生成随机文件夹  --d:/upload/news/1/2/
@@ -74,7 +74,7 @@ public class NewsManageController {
 			System.out.println("方式一：上传文件");
 			// 拿到编辑器的内容
 			//方式一：
-			String content = request.getParameter("editorValue");// 获得输入编辑框的内容【带有格式的内容】    
+			String content = request.getParameter("editorValue");// 获得输入编辑框的内容【带有格式的内容】
 			// 最终的文件路径名 d:/upload/news/1/2/ xxx.txt
 			nContent = savePath + uuidName + ".txt";
 			// 创建文件对象
@@ -83,16 +83,16 @@ public class NewsManageController {
 			fileWriter.write(content);// 向文件中写入String字符串的内容
 			fileWriter.close();// 关闭
 		}
-	
+
 		//添加新闻
 		news.setnContent(nContent);//设置文件路径
 		news.setVisitCount(0);//设置访问次数
 		newsService.addNews(news);//添加新闻
-		
+
 		return "redirect:/newsManage/findNewsList.action";//上传成功   列表页面
 	}
-	
-	
+
+
 	//编辑新闻页面
 	//编辑新闻页面
 	@RequestMapping("/toEditPage.action")
@@ -104,22 +104,24 @@ public class NewsManageController {
 
 		int len = 0;
 		StringBuffer str = new StringBuffer("");
-		File file = new File(thingPath);
-		if (file.exists()) {
-			try {
-				FileInputStream is = new FileInputStream(file);
-				InputStreamReader isr = new InputStreamReader(is, "UTF-8");
-				BufferedReader in = new BufferedReader(isr);
-				String line = null;
-				while ((line = in.readLine()) != null) {
-					if (len != 0) str.append("\n");
-					str.append(line);
-					len++;
+		if (thingPath != null && !thingPath.isEmpty()) {
+			File file = new File(thingPath);
+			if (file.exists()) {
+				try {
+					FileInputStream is = new FileInputStream(file);
+					InputStreamReader isr = new InputStreamReader(is, "UTF-8");
+					BufferedReader in = new BufferedReader(isr);
+					String line = null;
+					while ((line = in.readLine()) != null) {
+						if (len != 0) str.append("\n");
+						str.append(line);
+						len++;
+					}
+					in.close();
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-				in.close();
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
 		}
 		String content=str.toString();
@@ -129,49 +131,51 @@ public class NewsManageController {
 		model.addAttribute("currentPage", currentPage);
 		return "/admin/news/editnews.jsp";
 	}
-	
+
 	//编辑新闻信息
 	@RequestMapping("/editNews.action")      //  修改文件内容！！！！！！！！！
 	public String editNews(News news,String editvalue,HttpServletRequest request,Integer currentPage2) throws IOException{
-		
+
+		try {
 		System.out.println("修改-------------------------");
 		System.out.println(news.getAuthor()+"::"+news.getKeyword()+":::"+news.getnTitle()+":::"+news.getRecordTime());
 		System.out.println("路径:"+news.getnContent());
-		
+
 		// 拿到编辑器的内容
 		String content = editvalue;// 带有格式的内容（已通过hidden input提交）
-		System.out.println("编辑器内容：--"+ (content != null ? content.length() : 0) +"字符");
+		System.out.println("编辑器内容长度："+ (content != null ? content.length() : 0) +"字符");
 		//写文件，到那个路径
 		if (content != null && !content.trim().isEmpty()) {
 			String thingPath = news.getnContent();//将编辑器的内容写到原来文件中，覆盖原来的文件
 			if (thingPath != null && !thingPath.isEmpty()) {
-				try {
-					//重写文件
-					File fileText = new File(thingPath);// 创建文件
-					File fileParent = fileText.getParentFile();
-					if (fileParent != null && !fileParent.exists()) {
-						fileParent.mkdirs();
-					}
-					FileWriter fileWriter = new FileWriter(fileText);// 向文件写入对象写入信息
-					fileWriter.write(content);// 向文件中写入String字符串的内容
-					fileWriter.close();// 关闭
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println("文件写入失败: " + e.getMessage());
+				//重写文件
+				File fileText = new File(thingPath);// 创建文件
+				File fileParent = fileText.getParentFile();
+				if (fileParent != null && !fileParent.exists()) {
+					fileParent.mkdirs();
 				}
+				FileWriter fileWriter = new FileWriter(fileText);// 向文件写入对象写入信息
+				fileWriter.write(content);// 向文件中写入String字符串的内容
+				fileWriter.close();// 关闭
+				System.out.println("文件写入成功: "+thingPath);
 			}
 		}
-		
-		//编辑新闻信息
-		newsService.editNews(news); 
-		return "redirect:/newsManage/findNewsList.action?currentPage="+currentPage2;//当前页，在分页的时候进行了保存
-	}	
-	
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("编辑新闻异常: " + e.getClass().getName() + " - " + e.getMessage());
+		}
+
+		//编辑新闻信息（即使文件写入失败，也更新数据库中的标题/作者/关键字/日期）
+		newsService.editNews(news);
+		int page = (currentPage2 != null) ? currentPage2 : 0;
+		return "redirect:/newsManage/findNewsList.action?currentPage="+page;//当前页，在分页的时候进行了保存
+	}
+
 	//删除新闻信息
 	@RequestMapping("/deleteNews.action")
 	public String deleteNews(int  nid,Integer currentPage2){
 		newsService.deleteNews(nid);//删除新闻信息
-		
+
 		//如果当前页，只有一条记录，删除后，应该返回上一页
 		//每页记录是是10条，查询新闻的总记录数
 		int pageRecord=10;
@@ -184,18 +188,18 @@ public class NewsManageController {
 			allPage=count/pageRecord+1;
 		}
 		allPage=allPage-1;
-		
+
 		if(currentPage2>allPage){
 			currentPage2=currentPage2-1;//上一页
 		}
 //		"/newsManage/findNewsList.action
 		return "redirect:/newsManage/findNewsList.action?currentPage="+currentPage2;//当前页，在分页的时候进行了保存
 	}
-	
-	
+
+
 	//新闻详情页
-	
-	
+
+
 	// 生成唯一的文件名
 	private static String generateUUIDName() {
 		return UUID.randomUUID().toString();

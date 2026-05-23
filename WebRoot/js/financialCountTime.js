@@ -5,9 +5,8 @@ $(function() {
 	
 	//这里是日期联动的关键        
 	function endDates() {
-	    //将结束日期的事件改成 false 即可
-	    end.trigger = false;
-	    $("#dayInputEnd").jeDate(end);
+	    //先解绑旧的jeDate事件，再重新初始化（应用新的minDate）
+	    $("#dayInputEnd").off('click focus').jeDate(end);
 	}
 	
 	//开始时间
