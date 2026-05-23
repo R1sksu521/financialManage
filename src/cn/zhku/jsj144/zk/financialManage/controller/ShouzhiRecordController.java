@@ -70,11 +70,6 @@ public class ShouzhiRecordController {
 			}
 			if(shouzhiRecord.getSzr_comment()!=null && !"".equals(shouzhiRecord.getSzr_comment())){
 				String com = shouzhiRecord.getSzr_comment().trim();
-				try {
-					// GET请求参数使用ISO-8859-1解码，需转回UTF-8（web.xml的CharacterEncodingFilter只处理POST）
-					String fixed = new String(com.getBytes("ISO-8859-1"), "UTF-8");
-					com = fixed;
-				} catch (UnsupportedEncodingException e) {}
 				request.setAttribute("comment_condition", com);
 				shouzhiRecord.setSzr_comment(com);
 			}

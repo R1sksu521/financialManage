@@ -22,8 +22,8 @@ $(function() {
 //		        end.minDate = obj.val; //开始日选好后，重置结束日的最小日期
 //		        endDates();
 //		    },
-		    okfun: function(obj){
-		        end.minDate = obj.val; //开始日选好后，重置结束日的最小日期（结束日>=开始日）
+		    okfun: function(elem, val){
+		        end.minDate = val; //开始日选好后，重置结束日的最小日期（结束日>=开始日）
 		        endDates();
 		   }
 	};
@@ -37,8 +37,8 @@ $(function() {
 //	    	start.maxDate = obj.val; //将结束日的初始值设定为开始日的最大日期
 ////	    	start.maxDate = obj.val; //将结束日的初始值设定为开始日的最大日期
 //	    },
-	    okfun: function(obj){
-	        start.maxDate = obj.val; //将结束日的初始值设定为开始日的最大日期
+	    okfun: function(elem, val){
+	        start.maxDate = val; //结束日选好后，重置开始日的最大日期（开始日<=结束日）
 	    }
 	};
 	
