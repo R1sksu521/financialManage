@@ -142,12 +142,20 @@ public class NewsManageController {
 		String content = editvalue;// 带有格式的内容（已通过hidden input提交）
 		System.out.println("编辑器内容：--"+editvalue);
 		//写文件，到那个路径
+		if (content != null && !content.trim().isEmpty()) {
 		String thingPath =news.getnContent();//将编辑器的内容写到原来文件中，覆盖原来的文件
+		if (thingPath != null && !thingPath.isEmpty()) {
 		//重写文件
 		File fileText = new File(thingPath);// 创建文件
+		File fileParent = fileText.getParentFile();
+		if (fileParent != null && !fileParent.exists()) {
+			fileParent.mkdirs();
+		}
 		FileWriter fileWriter = new FileWriter(fileText);// 向文件写入对象写入信息
 		fileWriter.write(content);// 向文件中写入String字符串的内容
 		fileWriter.close();// 关闭
+		}
+		}
 		
 		//编辑新闻信息
 		newsService.editNews(news); 

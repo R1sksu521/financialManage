@@ -25,15 +25,16 @@
 <meta http-equiv="description" content="This is my page">
 
 <!-- 引入外部的bootstrap中的css文件 -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 <!-- jquery文件，务必在bootstrap.min.js之前引入 -->
-<script type="text/javascript" src="jquery/jquery.min.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+<script>var CTX="${pageContext.request.contextPath}";</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- 引入自定义样式 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/index.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/admin/index.js">
-	
+
 </script>
 </head>
 
@@ -48,7 +49,7 @@
 					<hr />
 					<h3>管理员登录</h3>
 					<form
-						action="${pageContext.request.contextPath}/userManage/login.action "
+						action="${pageContext.request.contextPath}/userManage/login.action"
 						id="myform" method="post">
 						<div>
 							<label id="msgLabel">${msg }</label>
@@ -79,14 +80,14 @@
 						<!-- 输入框组 -->
 						<div class="form-group">
 							<input type="submit" value="登录"
-								class="btn btn-primary btn-block loginbtn" id="loginbtn"> 
+								class="btn btn-primary btn-block loginbtn" id="loginbtn">
 						</div>
 					</form>
 				</div>
 				<!-- col-md-4 -->
 			</div>
 			<!-- row -->
-			
+
 
 		</div>
 		<!--main-box  -->

@@ -22,8 +22,8 @@ $(function() {
 //		        end.minDate = obj.val; //开始日选好后，重置结束日的最小日期
 //		        endDates();
 //		    },
-		    okfun: function(val){
-		        end.minDate = obj.val; //开始日选好后，重置结束日的最小日期
+		    okfun: function(obj){
+		        end.minDate = obj.val; //开始日选好后，重置结束日的最小日期（结束日>=开始日）
 		        endDates();
 		   }
 	};

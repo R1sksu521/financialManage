@@ -25,15 +25,16 @@
 <meta http-equiv="description" content="This is my page">
 
 <!-- 引入外部的bootstrap中的css文件 -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
 <!-- jquery文件，务必在bootstrap.min.js之前引入 -->
-<script type="text/javascript" src="jquery/jquery.min.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jquery/jquery.min.js"></script>
+<script>var CTX="${pageContext.request.contextPath}";</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- 引入自定义样式 -->
-<link rel="stylesheet" href="css/index.css">
-<script type="text/javascript" src="js/index.js">
-	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js">
+
 </script>
 </head>
 
@@ -130,7 +131,7 @@
 									</button>
 									<h4 class="modal-titile" id="passwordModal-label">忘记密码</h4>
 								</div>
-				
+
 								<form id="passwordform" method="post"
 									action="${pageContext.request.contextPath}/user/updatePasswordByUsername.action">
 									<!-- 为模态窗口的主体设置样式 -->
@@ -154,7 +155,7 @@
 												required="required" placeholder="请再次输入新密码">
 										</div>
 									</div>
-				
+
 									<!-- 为模态窗口的底部设置样式 -->
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default myclosebtn"
@@ -163,7 +164,7 @@
 											class="btn btn-primary">提交更改</button>
 									</div>
 								</form>
-				
+
 							</div>
 						</div>
 					</div>
